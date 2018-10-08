@@ -1,0 +1,18 @@
+@import "~styles/variables";
+@import "~styles/mixin";
+
+.title {
+	padding: 20px;
+}
+.options {
+	padding: 20px !important; 
+}
+.bottomControls {
+	@include boxShadowSoft;
+	:global(.btn):active{
+		opacity: 0.5
+	}
+}
+.button {
+	text-transform: uppercase;
+}

@@ -1,0 +1,21 @@
+@import "~styles/variables";
+
+.header {
+	text-align: center;
+}
+.buttonBack {
+	position: absolute;
+	left: 5px;
+	top: 12px;
+	padding: 10px;
+	background: transparent;
+	color: #fff;
+	:global(.icon) {
+		font-size: 14px;
+	}
+}
+.title {
+	vertical-align: middle;
+	line-height: 23px;
+	font-size: 16px;
+}

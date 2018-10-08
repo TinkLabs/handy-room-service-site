@@ -1,0 +1,47 @@
+@import "~styles/variables";
+@import "~styles/mixin";
+
+.fieldName {
+	font-size: 13px;
+	color: $gold;
+	font-weight: 400;
+	vertical-align: top;
+	width: 105px;
+	display: inline-block;
+	font-size: 13px;
+	overflow: hidden;
+	padding: 20px 10px 20px 12px;
+	line-height: 20px;
+	vertical-align: middle;
+}
+.fieldInput {
+	vertical-align: top;
+	width: calc(100% - 107px);
+	display: inline-block;
+	padding: 20px 10px;
+	font-size: 15px;
+	font-weight: 300;
+	line-height: 20px;
+	text-align: left;
+	padding-right: 40px;
+	background: #fff;
+	position: relative;
+	vertical-align: middle;
+	input, textarea {
+		width: 100%;
+	}
+	.remarksInput{
+		resize: none;
+	}
+}
+.red {
+	color: $error-red;
+}
+.error {
+	display: block;
+	font-size: 11px;
+	color: $error-red;
+	font-weight: 300;
+	line-height: 12px;
+	margin-top: 4px;
+}

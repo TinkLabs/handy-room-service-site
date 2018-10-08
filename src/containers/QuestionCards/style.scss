@@ -1,0 +1,10 @@
+@import "~styles/variables";
+@import "~styles/mixin";
+
+.itemCard {
+	:global(.card) {
+		background: transparent;
+		border: none;
+		box-shadow: none;
+	}
+}

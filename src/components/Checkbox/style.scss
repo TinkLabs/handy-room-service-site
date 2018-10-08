@@ -1,0 +1,21 @@
+@import "~styles/variables";
+
+.checkbox {
+	text-align: center;
+	border: 2px solid $dark-navy-blue;
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+	background: transparent;
+	position: relative;
+	:global(.icon) {
+		font-size: 14px;
+		color: $dark-navy-blue;
+		position: absolute;
+		top: 6px;
+		left: 6px;
+	}
+	&.disabled {
+		border-color: #eee;
+	}
+}

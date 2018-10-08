@@ -1,0 +1,60 @@
+@import "~styles/variables";
+@import "~styles/mixin";
+
+.price {
+	font-size: 15px;
+	font-weight: 500;
+	color: #000;
+	float: right;
+	width: 100px;
+	display: inline-block;
+	text-align: right;
+}
+.label {
+	font-size: 13px;
+	font-weight: 700;
+	line-height: 20px;
+	display: inline-block;
+	width: calc(100% - 100px;)
+}
+.serviceCharge, .totalCharge {
+	display: block;
+	width: 100%;
+	padding: 6px 0;
+	font-size: 13px;
+	color: #888888;
+	.price {
+		font-size: 15px;
+		font-weight: 300;
+		color: #000;
+		float: right;
+		max-width: 100%;
+		word-break: break-all;
+		width: auto;
+		display: inline-block;
+		text-align: right;
+	}
+	.label {
+		font-weight: 300;
+	}
+}
+.totalCharge {
+	font-weight: 900;
+	font-size: 15px;
+	color: #000;
+	margin-bottom: 10px;
+	.price {
+		font-weight: 900;
+	}
+	.label {
+		font-size: 15px;
+		font-weight: 900;
+	}
+}
+.footer {
+	transition: all 0.5s 0.5s;
+	&:global(.hideFooter) {
+		margin-bottom: -200px;
+		transition: all 0.5s;
+	}
+}

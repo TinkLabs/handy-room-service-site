@@ -1,0 +1,15 @@
+@import "~styles/variables";
+@import "~styles/mixin";
+
+.scrollable {
+	max-height: 70vh;
+	overflow: scroll;
+}
+.bottomControls {
+	@include boxShadowSoft;
+}
+.customCard {
+	:global(.container) {
+		padding: 0;
+	}
+}

@@ -1,0 +1,36 @@
+@import "~styles/variables";
+.choice {
+	display: block;
+	width: 100%;
+	min-height: 60px;
+	padding: 10px 0;
+	&.active {
+		.name {
+			text-shadow: 1px 0px 0px rgba(0, 0, 0, 1);
+		}
+		.price {
+			opacity: 1;
+		}
+	}
+	.price {
+		font-size: 14px;
+		display: inline-block;
+		vertical-align: middle;
+		min-width: 70px;
+		padding: 12px 0;
+		word-break: break-all;
+	}
+	.description {
+		color: #888888;
+		display: inline-block;
+		vertical-align: middle;
+		width: calc(100% - 110px);
+	}
+}
+.controls {
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: block;
+	padding: 18px 0;
+}

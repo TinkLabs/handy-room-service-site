@@ -1,0 +1,69 @@
+@import '~styles/mixin';
+@import '~styles/variables';
+.noScroll {
+	overflow: hidden;
+	position: fixed;
+}
+.popupBox {
+	position: fixed;
+	display: block;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	z-index: 10;
+	h1 {
+		font-size: 21px;
+	}
+	.overlay {
+		position: fixed;
+		display: block;
+		width: 100%;
+		height: 100%;
+		filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'blur\'><feGaussianBlur stdDeviation=\'3\'/></filter></svg>#blur");
+		overflow: scroll;
+		overscroll-behavior: contain;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		background: #000f23;
+		opacity: 0.5;
+		cursor: default;
+	}
+	.content {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 100%;
+		max-width: 320px;
+		transform: translate(-50%, -50%);
+		width: 320px;
+		background-color: #ffffff;
+		padding: 0; 
+		border-radius: 4px;
+		@include boxShadow;
+	}
+	:global(.card) {
+		box-shadow: none;
+	}
+	h4 {
+		font-weight: 500;
+		margin-bottom: 16px;
+	}
+}
+.children {
+	padding: 17px 15px 20px 15px; 
+	font-size: 0;
+	letter-spacing: 0;
+	text-align: center;
+	p {
+		font-size: 14px;
+	}
+	button {
+		width: auto;
+		min-width: calc(50% - 10px);
+		margin: 5px 5px 0 5px;
+		display: inline-block;
+	}
+}

@@ -1,0 +1,45 @@
+@import "~styles/variables";
+@import "~styles/mixin";
+
+.title {
+	padding: 20px;
+}
+.scrollable {
+	max-height: 500px;
+	overflow: scroll;
+	:global(.btn) {
+		display: inline;
+		width: 50%;
+		color: #888888;
+		text-transform: uppercase;
+	}
+	:global(.btn.active) {
+		border-bottom: 2.5px solid #000f23;
+		border-radius: 0;
+		color: #000f23;
+	}
+	:global(.picker-item) {
+		font-size: 15px;
+		letter-spacing: 1px;
+		font-weight: 300;
+		&:global(.picker-item-selected) {
+			font-weight: 400;
+		}
+	}
+	:global(.picker-container .picker-highlight) {
+		&:before, &:after {
+			height: 2px;
+			transform: none;
+			background-color: $dark-navy-blue;
+		}
+	}
+}
+.bottomControls {
+	@include boxShadowSoft;
+	:global(.btn):active{
+		opacity: 0.5
+	}
+}
+.button {
+	text-transform: uppercase;
+}

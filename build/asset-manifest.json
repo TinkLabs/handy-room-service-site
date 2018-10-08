@@ -1,0 +1,19 @@
+{
+  "main.css": "static/css/main.css",
+  "main.css.map": "static/css/main.css.map",
+  "main.js": "static/js/main.js",
+  "main.js.map": "static/js/main.js.map",
+  "static/media/dining.jpg": "static/media/dining.73d2f634.jpg",
+  "static/media/fontawesome-webfont.eot": "static/media/fontawesome-webfont.674f50d2.eot",
+  "static/media/fontawesome-webfont.svg?v=4.7.0": "static/media/fontawesome-webfont.912ec66d.svg",
+  "static/media/fontawesome-webfont.ttf?v=4.7.0": "static/media/fontawesome-webfont.b06871f2.ttf",
+  "static/media/fontawesome-webfont.woff2?v=4.7.0": "static/media/fontawesome-webfont.af7ae505.woff2",
+  "static/media/fontawesome-webfont.woff?v=4.7.0": "static/media/fontawesome-webfont.fee66e71.woff",
+  "static/media/handy.eot": "static/media/handy.67f60cc9.eot",
+  "static/media/handy.svg": "static/media/handy.a1e97389.svg",
+  "static/media/handy.ttf": "static/media/handy.807d60e0.ttf",
+  "static/media/handy.woff": "static/media/handy.84de8213.woff",
+  "static/media/handy.woff2": "static/media/handy.a22b8ce2.woff2",
+  "static/media/housekeeping.jpg": "static/media/housekeeping.01ba838a.jpg",
+  "static/media/shopping.jpg": "static/media/shopping.bf0bd680.jpg"
+}

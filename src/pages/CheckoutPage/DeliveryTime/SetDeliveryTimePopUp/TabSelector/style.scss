@@ -1,0 +1,15 @@
+@import "~styles/variables";
+@import "~styles/mixin";
+
+.tab {
+	display: inline;
+	width: 50%;
+	color: #888888;
+	text-transform: uppercase;
+}
+.tab.active {
+	border-bottom: 2.5px solid #000f23;
+	border-radius: 0;
+	color: #000f23;
+}
+

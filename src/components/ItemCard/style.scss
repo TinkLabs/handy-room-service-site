@@ -1,0 +1,94 @@
+@import "~styles/variables";
+@import "~styles/mixin";
+
+:global(.card).card {
+	min-height: 79px;
+	vertical-align: middle;
+	font-size: 20px;
+	padding: 10px;
+	width: 100%;
+	font-weight: 500;
+	background: #fff;
+	text-align: left;
+	border: 1.5px solid transparent;
+	-webkit-backface-visibility: hidden;
+	-webkit-transform: scale(1);
+	p {
+		font-weight: 300;
+	}
+	&.active {
+		border-color: #000f23;
+	}
+	.image {
+		width: 80px;
+		height: 80px;
+		margin-right: 10px;
+		vertical-align: top;
+		display: inline-block;
+		@include backgroundImage('');
+		background-color: #ccc;
+
+	}
+	.bio {
+		display: inline-block;
+		width: calc(100% - 91px);
+		vertical-align: top;
+		&:global(.noImage) {
+			width: calc(100%);
+		}
+		.title {
+			vertical-align: top;
+			font-size: 17px;
+			line-height: 20px;
+			font-weight: 400;
+			color: #000;
+			width: calc(100% - 70px);
+			display: inline-block;
+		}
+		p {
+			margin-top: 10px;
+			width: 100%;
+			line-height: 16px;
+			font-size: 13px;
+			font-weight: 300;
+			color: #888;
+			display: block;
+		}
+		.red {
+			color: $error-red;
+		}
+	}
+	.price {
+		vertical-align: top;
+		min-width: 70px;
+		text-align: right;
+		font-size: 15px;
+		line-height: 18px;
+		padding: 1px 0;
+		display: inline-block;
+		text-align: right;
+		font-weight: 300;
+		word-break: break-all;
+	}
+	:global(.left) {
+		padding-top: 10px;
+		text-align: center;
+		display: inline-block;
+		width: 50%;
+		vertical-align: middle;
+	}
+	:global(.right) {
+		padding-top: 10px;
+		text-align: right;
+		display: inline-block;
+		width: 50%;
+		vertical-align: middle;
+	}
+	.error {
+		display: block;
+		font-size: 11px;
+		color: $error-red;
+		line-height: 11px;
+		margin-top: 4px;
+	}
+}

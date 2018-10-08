@@ -1,0 +1,81 @@
+@import "~styles/variables";
+@import "~styles/mixin";
+
+.card {
+	position: relative;
+	min-height: 79px;
+	vertical-align: middle;
+	font-size: 17px;
+	padding: 20px;
+	width: 100%;
+	font-weight: 500;
+	background: #fff;
+	text-align: left;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border: 1.5px solid transparent;
+	&.active {
+		border-color: #000f23;
+	}
+	&:active {
+		background-color: #ddd;
+		@include boxShadowDarker;
+	}
+    :global(.delivery-time-slot) {
+        position: absolute;
+        top: 55%;
+        right: 21px;
+        transform: translateY(-50%);
+        color: #888;
+        font-weight: 300;
+        font-size: 16px;
+    }
+}
+
+.textDiv{
+	width: 100%;
+	padding-right: 125px;
+	display: block;
+	line-height: 20px;
+	div {
+		
+	}
+	span {
+		font-size: 13px;
+		line-height: 16px;
+		color: #888888;
+		font-weight: 300;
+		display: block;
+		margin-top: 2px;
+	}
+}
+
+.arrow {
+	position: absolute;
+	top: 50%;
+	right: 21px;
+	transform: translateY(-50%);
+	font-size: 13px;
+	height: 13px;
+	color: #4c4c4c;
+}
+
+.clock {
+	font-size: 17px;
+	vertical-align: middle;
+	margin-right: 5px;
+}
+
+.deliveryTimeDiv {
+	position: absolute;
+	top: 55%;
+	right: 21px;
+	transform: translateY(-50%);
+	color: #888;
+	font-weight: 300;
+	font-size: 16px;
+}
+
+.icon{
+
+}

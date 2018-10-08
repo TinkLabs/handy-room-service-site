@@ -1,0 +1,44 @@
+@import "~styles/variables";
+@import "~styles/mixin";
+
+:global(.card).card {
+	background: #fff;
+	margin-bottom: 10px;
+}
+:global(.card).card :global(.card){
+	background: transparent;
+	box-shadow: none;
+}
+:global(.card) .editableText:global(.left) {
+	text-align: left;
+}
+.price {
+	font-size: 15px;
+	font-weight: 300;
+	color: #000;
+	float: right;
+	max-width: 100%;
+	word-break: break-all;
+	display: inline-block;
+	text-align: right;
+}
+.label {
+	font-size: 13px;
+	font-weight: 700;
+	line-height: 20px;
+	display: inline-block;
+	width: calc(100% - 100px;)
+}
+.buttonEdit {
+	background: #fbfbfb;
+	font-size: 13px;
+	line-height: 13px;
+	vertical-align: middle;
+	padding: 10px;
+	border: 1px solid #ddd;
+	:global(.icon) {
+		margin-right: 4px;
+		height: 17px;
+		vertical-align: middle;
+	}
+}

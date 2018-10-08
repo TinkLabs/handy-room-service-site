@@ -1,0 +1,50 @@
+{
+    "extends": "airbnb",
+    "parserOptions": {
+        "ecmaVersion": 8,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "globals": {
+        "Console": true
+    },
+    "rules":{
+        "indent": [2, "tab", { "SwitchCase": 1, "VariableDeclarator": 1 }],
+        "no-tabs": 0,
+        "no-unused-expressions": ["error", { "allowShortCircuit": true, "allowTernary": true }],
+        "react/prop-types": 0,
+        "react/jsx-indent": [2, "tab"],
+        "react/jsx-indent-props": [2, "tab"],
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "import/extensions": [1, "always", { "js": "never"}],
+        "react/no-danger": 0,
+        "react/no-array-index-key": 0,
+        "no-underscore-dangle": 0,
+        "jsx-a11y/no-noninteractive-tabindex": 0,
+        "no-console": 0,
+        "class-methods-use-this": 0,
+        "import/no-extraneous-dependencies": 0,
+        "camelcase": 0,
+        "import/prefer-default-export": 0,
+        "react/forbid-prop-types": 0,
+        "jsx-a11y/href-no-hash": "off",
+        "jsx-a11y/anchor-is-valid": ["warn", { "aspects": ["invalidHref"] }]
+    },
+    "plugins": [
+        "react"
+    ],
+    "env": {
+        "browser": true,
+        "node": true,
+        "jasmine": true
+    },
+    "settings" : {
+        "import/resolver": {
+            "node": {
+                "moduleDirectory": ["node_modules", "src/"]
+            }
+        }
+    }
+}

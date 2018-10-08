@@ -1,0 +1,71 @@
+@import "~styles/variables";
+@import "~styles/mixin";
+
+:global(.card).card {
+	min-height: 48.5px;
+	vertical-align: middle;
+	font-size: 20px;
+	width: 100%;
+	font-weight: 500;
+	background: #fff;
+	text-align: left;
+	padding: 0;
+	.bio {
+		display: inline-block;
+		width: calc(100% - 70px);
+		vertical-align: top;
+		.title {
+			font-size: 15px;
+			line-height: 28px;
+			font-weight: 400;
+			display: block;
+			color: #000;
+			width: 100%;
+
+			.editLogo {
+				font-size: 11px;
+				padding-left: 3.5px;
+				color: #888888;
+			}
+		}
+		p {
+			margin-top: 10px;
+			width: 100%;
+			line-height: 16px;
+			font-size: 13px;
+			color: #888;
+			display: block;
+		}
+	}
+	.price {
+		min-width: 70px;
+		text-align: right;
+		font-size: 15px;
+		line-height: 28px;
+		text-align: right;
+		font-weight: 400;
+		word-break: break-all;
+		display: inline-block;
+		max-width: 100%;
+	}
+	:global(.left) {
+		padding-top: 10px;
+		text-align: center;
+		display: inline-block;
+		width: 50%;
+		vertical-align: middle;
+	}
+	:global(.right) {
+		padding-top: 10px;
+		text-align: right;
+		display: inline-block;
+		width: 50%;
+		vertical-align: middle;
+	}
+
+	.subTitle{
+		font-size: 13px;
+		color: #888888;
+		line-height: 16px;
+	}
+}

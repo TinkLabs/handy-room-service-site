@@ -1,0 +1,17 @@
+@import "~styles/variables";
+@import "~styles/mixin";
+.heading {
+	font-weight: 500;
+	padding: 27px 20px;
+}
+.itemCard {
+	:global(.card) {
+		background: transparent;
+		border: none;
+		box-shadow: none;
+	}
+}
+.customPage {
+	padding-bottom: 100px;
+	overflow: scroll;
+}

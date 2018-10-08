@@ -1,0 +1,75 @@
+@import "~styles/variables";
+@import "~styles/mixin";
+
+.title {
+	padding: 20px;
+	padding-bottom: 5px;
+	p {
+		font-size: 13px;
+		color: #888;
+		margin-top: 11px;
+	}
+}
+.options {
+	padding: 20px !important; 
+	b {
+		font-size: 15px;
+		font-weight: 400;
+	}
+}
+.input {
+	width: 100%;
+	input {
+		width: 100%;
+		box-sizing: border-box;
+		font-weight: 400;
+	}
+	&.focus {
+		padding-left: 14px;
+		&:after {
+			font-weight: 400;
+			
+			content: attr(data-currency-symbol);
+			position: absolute;
+			left: 0;
+			top: 3px;
+			font-size: 15px;
+			line-height: 15px;
+			color: #000;
+		}
+	}
+}
+.price {
+	position: absolute;
+	right: 45px;
+	top: 50%;
+	font-weight: 400;
+	transform: translateY(-50%);
+	line-height: 17px;
+	font-size: 15px;
+	color: #000;
+}
+.priceSuggestion {
+	position: absolute;
+	right: 45px;
+	top: 50%;
+	font-weight: 400;
+	transform: translateY(-50%);
+	line-height: 16px;
+	font-size: 13px;
+	color: #000;
+	opacity: 0.2;
+	&:global(.error) {
+		opacity: 1;
+		color: $error-red;
+	}
+}
+.bottomControls {
+	@include boxShadowSoft;
+	:global(.btn):active{
+		opacity: 0.5
+	}
+}
+.button {
+	text-transform: uppercase;
+}

@@ -1,0 +1,55 @@
+@import "~styles/variables";
+@import "~styles/mixin";
+:global(.container).hero {
+	padding: 30px 20px 20px 20px;
+	color: #fff;
+	.backgroundColor {
+		content: "";
+		display: block;
+		width: 100%;
+		height: calc(100% + 40px);
+		top: 0;
+		left: 0;
+		position: absolute;
+		background: $dark-navy-blue;
+	}
+}
+.text {
+	color: #fff;
+	h2 {
+		font-weight: 400;
+		font-size: 27px;
+	}
+}
+.details {
+	color: #fff;
+	font-size: 15px;
+	color: rgba(255,255,255,0.5);
+	margin-top: 10px;
+}
+.hint {
+	margin-top: 26px;
+	font-size: 13px;
+	line-height: 17px;
+	font-weight: 300;
+	font-size: 15px;
+}
+
+.clock {
+	font-size: 21px;
+	vertical-align: middle;
+	margin-right: 5px;
+}
+
+.calendar {
+	font-size: 17px;
+	vertical-align: middle;
+	margin-right: 5px;
+}
+
+.left {
+	display: inline-block;
+}
+.right {
+	display: inline-block;
+}

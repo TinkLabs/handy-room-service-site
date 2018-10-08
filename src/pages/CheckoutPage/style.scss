@@ -1,0 +1,131 @@
+@import "~styles/variables";
+@import "~styles/mixin";
+
+.checkoutPage {
+	padding-bottom: 170px;
+	// height: 100%;
+	overflow: scroll;
+}
+.whiteLayer {
+	z-index: 10;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: rgba(255, 255, 255, 0.5);
+}
+.clickNotAllowed {
+	pointer-events: none;
+}
+:global(.card).card {
+	background: #fff;
+	margin-bottom: 10px;
+}
+:global(.card).card :global(.card){
+	background: transparent;
+	box-shadow: none;
+}
+.fieldName {
+	font-size: 13px;
+	color: $gold;
+	vertical-align: top;
+	width: 105px;
+	display: inline-block;
+	font-size: 13px;
+	overflow: hidden;
+	padding: 20px 10px 20px 12px;
+	line-height: 20px;
+}
+.form {
+	vertical-align: top;
+	width: 105px;
+	display: inline-block;
+	padding: 20px 10px 20px 12px;
+	line-height: 20px;
+}
+.red {
+	color: $error-red;
+}
+.error {
+	display: block;
+	font-size: 11px;
+	color: $error-red;
+	line-height: 11px;
+	margin-top: 4px;
+}
+.fieldInput {
+	vertical-align: top;
+	width: calc(100% - 107px);
+	display: inline-block;
+	padding: 20px 10px;
+	font-size: 15px;
+	line-height: 20px;
+	input, textarea {
+		width: 100%;
+	}
+	.remarksInput{
+		resize: none;
+	}
+}
+button.fieldInput {
+	text-align: left;
+	padding-right: 40px;
+	background: #fff;
+	position: relative;
+	&::after {
+		content: "\34";
+		font-family: handy;
+		position: absolute;
+		top: 50%;
+		right: 21px;
+		transform: translateY(-50%);
+		font-size: 13px;
+		height: 19px;
+		color: #888888;
+	}
+}
+.buttonEdit {
+	background: #fbfbfb;
+	font-size: 13px;
+	line-height: 17px;
+	vertical-align: middle;
+	padding: 10px;
+	border: 1px solid #ddd;
+	:global(.icon) {
+		margin-right: 4px;
+		height: 17px;
+		vertical-align: middle;
+	}
+}
+:global(.container).hero {
+	padding: 30px 70px 20px 20px;
+	color: #fff;
+	.backgroundColor {
+		content: "";
+		display: block;
+		width: 100%;
+		height: calc(100% + 40px);
+		top: 0;
+		left: 0;
+		position: absolute;
+		background: $dark-navy-blue;
+	}
+}
+.text {
+	color: #fff;
+	h2 {
+		font-weight: 400;
+	}
+}
+.details {
+	color: #fff;
+	font-size: 15px;
+	color: rgba(255,255,255,0.5);
+	margin-top: 10px;
+}
+.hint {
+	margin-top: 26px;
+	font-size: 13px;
+	line-height: 17px;
+}

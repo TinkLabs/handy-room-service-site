@@ -1,0 +1,33 @@
+@import "~styles/variables";
+
+:global(.card).card {
+	padding: 0 12px;
+	background: #fff;
+	margin: 10px 0;
+	&:global(.error) {
+		border: 1px solid $error-red;
+	}
+}
+.error {
+	display: block;
+	font-size: 11px;
+	text-align: left;
+	color: $error-red;
+	padding-bottom: 1px;
+}
+.heading {
+	padding: 20px 0 5px 0;
+}
+.categoryName {
+	font-size: 13px;
+	color: $gold;
+	font-weight: 400;
+	width: 60%;
+}
+.options {
+	float: right;
+	color: #888888;
+	font-size: 13px;
+	font-weight: 300;
+	padding-bottom: 5px;
+}

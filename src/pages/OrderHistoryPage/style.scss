@@ -1,0 +1,15 @@
+@import "~styles/variables";
+@import "~styles/mixin";
+.page {
+	min-height: 100%;
+	
+	h1{
+		font-size: 27.5px;
+		line-height: 25px;
+		font-weight: 600;
+		color: #000f23;
+		padding-top: 16.5px;
+		padding-left: 10px;
+		padding-bottom: 41.5px;
+	}
+}

@@ -1,0 +1,41 @@
+@import "~styles/variables";
+@import "~styles/mixin";
+
+.footerPlaceholder {
+	height: 69px;
+	width: 100%;
+	display: block;
+	background: transparent;
+}
+:global(.btn).button {
+	@include boxShadowSoft;
+	padding: 14px 15px;
+	&:active {
+		background: #e27400;
+	}
+}
+.badge {
+	float: left;
+	display: inline-block;
+	background: #e57600;
+	color: #fff;
+	padding: 5px 8px;
+	font-size: 13px;
+	border-radius: 12px;
+	text-transform: none;
+}
+.label {
+	text-transform: uppercase;
+	vertical-align: middle;
+	display: inline-block;
+	float: right;
+	padding: 5px 0px 3px 0px;
+	:global(.icon) {
+		margin-left: 15px;
+		height: 17px;
+		vertical-align: middle;
+	}
+}
+.footer {
+	padding: 10px;
+}

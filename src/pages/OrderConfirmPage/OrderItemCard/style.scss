@@ -1,0 +1,19 @@
+@import "~styles/variables";
+@import "~styles/mixin";
+
+.card {
+	padding: 10px 0;
+	min-height: 44px;
+	h3 {
+		font-size: 15px;
+		font-weight: 400;
+		padding-bottom: 2px;
+	}
+
+	p {
+		color: #888888;
+		line-height: 16px;
+		font-size: 13px;
+		font-weight: 400;
+	}
+}

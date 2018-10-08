@@ -1,0 +1,48 @@
+@import "~styles/variables";
+@import "~styles/mixin";
+.page {
+	// height: 100%;
+	// overflow: scroll;
+	position: relative;
+	box-sizing: border-box;
+}
+.header {
+	:global(.icon) {
+		font-size: 23px;
+		height: 23px;
+		margin-right: 10px;
+	}
+	:global(.btn) {
+		float: right;
+		margin-top: -1px;
+	}
+	span {
+		line-height: 23px;
+		vertical-align: middle;
+	}
+}
+:global(.btn.small.blue).smallBtn {
+	background: rgba(200, 200, 200 ,0.2);
+	font-size: 13px;
+	font-weight: 300;
+}
+.chooseCategory {
+	padding: 15px 20px 15px 20px;
+	font-weight: 400;
+}
+.callButton {
+	padding: 12px 30px;
+	display: block;
+	margin: 20px auto;
+	color: #a9a9a9;
+	font-size: 13px;
+	background: transparent;
+	span {
+		vertical-align: middle;
+	}
+	:global(.icon) {
+		font-size: 14px;
+		height: 14px;
+		margin-right: 10px;
+	}
+}
