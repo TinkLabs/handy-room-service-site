@@ -1,0 +1,116 @@
+defaults: &defaults 
+  working_directory: ~/room-service-app
+  docker:
+    - image: circleci/node:8.11.2
+
+version: 2
+jobs:
+  deploy-staging:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache
+      - run: 
+          name: Install packages
+          command: yarn
+      - save_cache:
+          key: dependency-cache
+          paths:
+            - ~/.cache/yarn
+      - run: 
+          name: Rebuild node-sass
+          command: npm rebuild node-sass
+      - run: 
+          name: Install aws command line
+          command: sudo apt-get update && sudo apt-get install -y awscli
+      - run:
+          name: Deploy Staging
+          command: yarn run deploy:staging
+  deploy-uat:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache
+      - run: 
+          name: Install packages
+          command: yarn
+      - save_cache:
+          key: dependency-cache
+          paths:
+            - ~/.cache/yarn
+      - run: 
+          name: Rebuild node-sass
+          command: npm rebuild node-sass
+      - run: 
+          name: Install aws command line
+          command: sudo apt-get update && sudo apt-get install -y awscli
+      - run:
+          name: Deploy UAT
+          command: yarn run deploy:uat
+  deploy-dev:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache
+      - run: 
+          name: Install packages
+          command: yarn
+      - save_cache:
+          key: dependency-cache
+          paths:
+            - ~/.cache/yarn
+      - run: 
+          name: Rebuild node-sass
+          command: npm rebuild node-sass
+      - run: 
+          name: Install aws command line
+          command: sudo apt-get update && sudo apt-get install -y awscli
+      - run:
+          name: Deploy DEV
+          command: yarn run deploy:dev
+  deploy-production:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache
+      - run: 
+          name: Install packages
+          command: yarn
+      - save_cache:
+          key: dependency-cache
+          paths:
+            - ~/.cache/yarn
+      - run: 
+          name: Rebuild node-sass
+          command: npm rebuild node-sass
+      - run: 
+          name: Install aws command line
+          command: sudo apt-get update && sudo apt-get install -y awscli
+      - run:
+          name: Deploy Production
+          command: yarn run deploy:prod
+      
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - deploy-staging:
+          filters:
+            branches:
+              only: staging
+      - deploy-uat:
+          filters:
+            branches:
+              only: uat
+      - deploy-dev:
+          filters:
+            branches:
+              only: dev
+      - deploy-production:
+          filters:
+            branches:
+              only: master
