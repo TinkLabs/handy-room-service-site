@@ -24,7 +24,7 @@ defaults: &defaults
         command: sudo pip install awscli
     - run:
         name: Get latest translation
-        command: npm install gulp -g && gulp onesky && gulp onesky-post
+        command: sudo npm install gulp -g && sudo gulp onesky && sudo gulp onesky-post
     - run:
         name: Deploy $ENV
         command: yarn build && aws s3 rm $S3_BUCKET --recursive --region ap-southeast-1 && aws s3 cp --recursive ./build $S3_BUCKET --region ap-southeast-1
