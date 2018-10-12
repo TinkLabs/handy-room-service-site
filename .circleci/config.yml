@@ -18,7 +18,10 @@ defaults: &defaults
         command: npm rebuild node-sass
     - run: 
         name: Install aws command line
-        command: sudo apt-get update && sudo apt-get install -y awscli
+        command: sudo apt-get update && sudo apt-get install -y python-dev python-pip
+    - run: 
+        name: Install aws command line
+        command: sudo pip install awscli
     - run:
         name: Deploy $ENV
         command: yarn build && aws s3 rm $S3_BUCKET --recursive --region ap-southeast-1 && aws s3 cp --recursive ./build $S3_BUCKET --region ap-southeast-1
