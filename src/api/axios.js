@@ -3,13 +3,15 @@ import getConfig from 'getConfig';
 import getConfigExample from './exampleResponse/getConfig';
 import getOrderHistoryExample from './exampleResponse/getOrderHistory';
 
-const axiosInstance = axios.create();
+const axiosInstance = axios.create({
+	baseURL: getConfig().host,
+});
 
 const barcode = new URLSearchParams(window.location.search).get('_barcode');
 if (barcode) {
 	axiosInstance.interceptors.request.use(
 		(config) => {
-			if (getConfig().env === 'production' && config.method === 'post') return config;
+			if (getConfig().env !== 'ldev' && config.method === 'post') return config;
 			return {
 				...config,
 				baseURL: 'https://ldev.handy.travel',

@@ -73,6 +73,8 @@ jobs:
           command: yarn run deploy:dev
   deploy-production:
     <<: *defaults
+    environment:
+      ENV: production
     steps:
       - checkout
       - restore_cache:

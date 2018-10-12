@@ -3,6 +3,12 @@ import diningBg from './dining.jpg';
 import shoppingBg from './shopping.jpg';
 import housekeeping from './housekeeping.jpg';
 
+const api = {
+	production: 'https://hk.handy.travel',
+	staging: 'https://staging.handy.travel',
+	development: 'https://dev.handy.travel',
+	uat: 'https://uat.handy.travel',
+};
 const typesCofig = () => ({
 	dining: {
 		heroImage: diningBg,
@@ -29,19 +35,10 @@ if (window.type && types.includes(window.type)) {
 	targetType = window.type;
 }
 
-export default () => {
-	if (window.env === 'production') {
-		return {
-			env: window.env,
-			type: targetType,
-			...typesCofig()[targetType],
-		};
-	}
-	return {
-		env: window.env,
-		type: targetType,
-		testIMEI: '', // 357525080899920
-		...typesCofig()[targetType],
-	};
-};
+export default () => ({
+	env: process.env.ENV,
+	type: targetType,
+	host: api[process.env.ENV],
+	...typesCofig()[targetType],
+});
 
