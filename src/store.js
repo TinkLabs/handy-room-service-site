@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
+import getConfig from 'getConfig';
 import moment from 'moment';
 import Immutable from 'immutable';
 import ShoppingCart from 'records/ShoppingCart';
@@ -9,6 +10,7 @@ import rootReducer from 'modules';
 
 export const history = createHistory();
 
+const localstorageName = `${getConfig().type}_order`;
 let initialState = Immutable.Map();
 const enhancers = [];
 const middleware = [
@@ -27,8 +29,8 @@ const composedEnhancers = compose(
 	applyMiddleware(...middleware),
 	...enhancers,
 );
-if (localStorage.getItem('order')) {
-	const serializedState = localStorage.getItem('order');
+if (localStorage.getItem(localstorageName)) {
+	const serializedState = localStorage.getItem(localstorageName);
 	const json = JSON.parse(serializedState);
 	initialState = Immutable.Map({
 		order: Immutable.Map({
@@ -46,6 +48,6 @@ const store = createStore(
 window.store = store;
 store.subscribe(() => {
 	const serializedState = JSON.stringify(store.getState().get('order').toJSON());
-	localStorage.setItem('order', serializedState);
+	localStorage.setItem(localstorageName, serializedState);
 });
 export default store;
