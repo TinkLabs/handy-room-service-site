@@ -21,10 +21,13 @@ defaults: &defaults
         command: sudo apt-get update && sudo apt-get install -y awscli
     - run:
         name: Deploy $ENV
-        command: yarn build && aws s3 cp --recursive ./build $S3_BUCKET --region ap-southeast-1
+        command: yarn build && aws s3 rm $S3_BUCKET --recursive && aws s3 cp --recursive ./build $S3_BUCKET --region ap-southeast-1
+    - run:
+        name: activate cloud front
+        command: aws configure set preview.cloudfront true && aws configure set preview.create-invalidation true
     - run:
         name: Invalidate cloudfront
-        command: aws configure set preview.cloudfront true && aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_ID --paths /index.html
+        command: aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_ID --paths /index.html --invalidation-batch
 version: 2
 jobs:
   deploy-staging:
