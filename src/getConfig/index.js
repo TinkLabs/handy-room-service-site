@@ -34,10 +34,9 @@ const types = Object.keys(typesCofig());
 
 
 let targetType = types[0];
-const hashArr = window.location.hash.split('/');
-if (hashArr.length >= 2 && typesCofig()[hashArr[1]]) {
+if (window.type && typesCofig()[window.type]) {
 	// eslint-disable-next-line
-	targetType = hashArr[1];
+	targetType = window.type;
 }
 console.log('ENV', process.env.ENV);
 console.log('TYPE', targetType);

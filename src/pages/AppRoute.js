@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'font-awesome/css/font-awesome.min.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Helmet } from 'react-helmet';
 import { Switch, withRouter } from 'react-router-dom';
 import t from 'translation';
 import getRoomServiceConfig from 'api/getRoomServiceConfig';
@@ -9,6 +10,7 @@ import { initRoomServiceConfig } from 'modules/roomServiceConfig';
 import { initRoomServiceCategories } from 'modules/roomServiceCategories';
 import { initRoomServiceItems } from 'modules/roomServiceItems';
 import ScrollToTopRoute from 'components/ScrollToTopRoute';
+import getConfig from 'getConfig';
 import Homepage from './Homepage';
 import ItemPage from './ItemPage';
 import OrderHistoryPage from './OrderHistoryPage';
@@ -63,48 +65,53 @@ class App extends Component {
 		}
 		if (!this.state.loaded) return null;
 		return (
-			<Switch>
-				<ScrollToTopRoute
-					exact
-					path="/"
-					component={Homepage}
-				/>
-				<ScrollToTopRoute
-					exact
-					path="/orders"
-					component={OrderHistoryPage}
-				/>
-				<ScrollToTopRoute
-					exact
-					path="/category/:id"
-					component={CategoryPage}
-				/>
-				<ScrollToTopRoute
-					exact
-					path="/item/:id"
-					component={ItemPage}
-				/>
-				<ScrollToTopRoute
-					exact
-					path="/checkout"
-					component={CheckoutPage}
-				/>
-				<ScrollToTopRoute
-					exact
-					path="/confirm"
-					component={OrderConfirmPage}
-				/>
-				<ScrollToTopRoute
-					exact
-					path="/error-outdated"
-					component={ErrorRefreshPage}
-				/>
-				<ScrollToTopRoute
-					exact
-					path="/error"
-					component={ErrorTryAgainPage}
-				/>
-			</Switch>
+			<React.Fragment>
+				<Helmet>
+					<title>{getConfig().title}</title>
+				</Helmet>
+				<Switch>
+					<ScrollToTopRoute
+						exact
+						path="/"
+						component={Homepage}
+					/>
+					<ScrollToTopRoute
+						exact
+						path="/orders"
+						component={OrderHistoryPage}
+					/>
+					<ScrollToTopRoute
+						exact
+						path="/category/:id"
+						component={CategoryPage}
+					/>
+					<ScrollToTopRoute
+						exact
+						path="/item/:id"
+						component={ItemPage}
+					/>
+					<ScrollToTopRoute
+						exact
+						path="/checkout"
+						component={CheckoutPage}
+					/>
+					<ScrollToTopRoute
+						exact
+						path="/confirm"
+						component={OrderConfirmPage}
+					/>
+					<ScrollToTopRoute
+						exact
+						path="/error-outdated"
+						component={ErrorRefreshPage}
+					/>
+					<ScrollToTopRoute
+						exact
+						path="/error"
+						component={ErrorTryAgainPage}
+					/>
+				</Switch>
+			</React.Fragment>
 		);
 	}
 }
