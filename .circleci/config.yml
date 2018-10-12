@@ -2,31 +2,37 @@ defaults: &defaults
   working_directory: ~/room-service-app
   docker:
     - image: circleci/node:8.11.2
-
+  steps:
+    - checkout
+    - restore_cache:
+        key: dependency-cache
+    - run: 
+        name: Install packages
+        command: yarn
+    - save_cache:
+        key: dependency-cache
+        paths:
+          - ~/.cache/yarn
+    - run: 
+        name: Rebuild node-sass
+        command: npm rebuild node-sass
+    - run: 
+        name: Install aws command line
+        command: sudo apt-get update && sudo apt-get install -y awscli
+    - run:
+        name: Deploy Staging
+        command: yarn build && aws s3 cp --recursive ./build $S3_BUCKET --region ap-southeast-1
+    - run:
+        name: Invalidate cloudfront
+        command: aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_ID --paths /index.html
 version: 2
 jobs:
   deploy-staging:
+    environment:
+      ENV: staging
+      S3_BUCKET: s3://room-service-staging.handytravel.tech
+      CLOUDFRONT_ID: E32OX7EPKG3UDU
     <<: *defaults
-    steps:
-      - checkout
-      - restore_cache:
-          key: dependency-cache
-      - run: 
-          name: Install packages
-          command: yarn
-      - save_cache:
-          key: dependency-cache
-          paths:
-            - ~/.cache/yarn
-      - run: 
-          name: Rebuild node-sass
-          command: npm rebuild node-sass
-      - run: 
-          name: Install aws command line
-          command: sudo apt-get update && sudo apt-get install -y awscli
-      - run:
-          name: Deploy Staging
-          command: ENV=staging yarn build && aws s3 cp --recursive ./build s3://room-service-staging.handytravel.tech --region ap-southeast-1
   deploy-uat:
     <<: *defaults
     steps:
@@ -49,6 +55,9 @@ jobs:
       - run:
           name: Deploy UAT
           command: ENV=uat yarn build && aws s3 cp --recursive ./build s3://room-service-uat.handytravel.tech --region ap-southeast-1
+      - run:
+          name: Invalidate cloudfront
+          command: aws cloudfront create-invalidation --distribution-id EBDGCY1V7JU6C --paths /index.html
   deploy-dev:
     <<: *defaults
     steps:
@@ -71,29 +80,15 @@ jobs:
       - run:
           name: Deploy DEV
           command: ENV=development yarn build && aws s3 cp --recursive ./build s3://room-service-dev.handytravel.tech --region ap-southeast-1
-  deploy-production:
-    <<: *defaults
-    steps:
-      - checkout
-      - restore_cache:
-          key: dependency-cache
-      - run: 
-          name: Install packages
-          command: yarn
-      - save_cache:
-          key: dependency-cache
-          paths:
-            - ~/.cache/yarn
-      - run: 
-          name: Rebuild node-sass
-          command: npm rebuild node-sass
-      - run: 
-          name: Install aws command line
-          command: sudo apt-get update && sudo apt-get install -y awscli
       - run:
-          name: Deploy Production
-          command: ENV=production yarn build && aws s3 cp --recursive ./build s3://room-service.handy.travel --region ap-southeast-1
-
+          name: Invalidate cloudfront
+          command: aws cloudfront create-invalidation --distribution-id E1JR6O8EV5O3PZ --paths /index.html
+  deploy-production:
+    environment:
+      ENV: production
+      S3_BUCKET: s3://room-service.handy.travel
+      CLOUDFRONT_ID: E1VS68ZIPHALH9
+    <<: *defaults
 workflows:
   version: 2
   build_and_test:
