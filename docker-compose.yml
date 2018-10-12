@@ -1,0 +1,18 @@
+version: '2'
+services:
+  room-service:
+    container_name: room-service
+    environment:
+      - VIRTUAL_HOST=room-service-ldev.handy.travel
+      - VIRTUAL_PORT=3000
+    volumes:
+      - ~/.ssh:/root/.ssh
+      - .:/app:cached
+    ports: 
+      - "8000:3000"
+    build: .
+    command: bash -c "cd /app && yarn install && yarn start"
+networks:
+  default:
+    external:
+      name: backend2_default

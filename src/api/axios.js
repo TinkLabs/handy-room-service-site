@@ -7,26 +7,25 @@ const axiosInstance = axios.create({
 	baseURL: getConfig().host,
 });
 
-// const barcode = new URLSearchParams(window.location.search).get('_barcode');
-// if (barcode) {
-// 	axiosInstance.interceptors.request.use(
-// 		(config) => {
-// 			if (getConfig().env !== 'ldev' && config.method === 'post') return config;
-// 			return {
-// 				...config,
-// 				url: `${config.url}?_barcode=${barcode}`,
-// 			};
-// 		},
-// 		error => Promise.reject(error),
-// 	);
-// }
+const barcode = new URLSearchParams(window.location.search).get('_barcode');
+if (barcode) {
+	axiosInstance.interceptors.request.use(
+		(config) => {
+			console.log(barcode);
+			// if (getConfig().env !== 'ldev' && config.method === 'post') return config;
+			return {
+				...config,
+				url: `${config.url}?_barcode=${barcode}`,
+			};
+		},
+		error => Promise.reject(error),
+	);
+}
 
-if (getConfig().env === 'ldev') {
+if (getConfig().useTestData) {
 	axiosInstance.interceptors.response.use(
 		response => response,
 		(error) => {
-			console.log(error.config.url);
-
 			if (error.config.url.includes('/config')) {
 				return new Promise((resolve) => {
 					setTimeout(() => {
