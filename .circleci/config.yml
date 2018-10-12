@@ -26,7 +26,7 @@ jobs:
           command: sudo apt-get update && sudo apt-get install -y awscli
       - run:
           name: Deploy Staging
-          command: yarn run deploy:staging
+          command: ENV=staging yarn build && aws s3 cp --recursive ./build s3://room-service-staging.handytravel.tech --region ap-southeast-1
   deploy-uat:
     <<: *defaults
     steps:
@@ -48,7 +48,7 @@ jobs:
           command: sudo apt-get update && sudo apt-get install -y awscli
       - run:
           name: Deploy UAT
-          command: yarn run deploy:uat
+          command: ENV=uat yarn build && aws s3 cp --recursive ./build s3://room-service-uat.handytravel.tech --region ap-southeast-1
   deploy-dev:
     <<: *defaults
     steps:
@@ -70,11 +70,9 @@ jobs:
           command: sudo apt-get update && sudo apt-get install -y awscli
       - run:
           name: Deploy DEV
-          command: yarn run deploy:dev
+          command: ENV=development yarn build && aws s3 cp --recursive ./build s3://room-service-dev.handytravel.tech --region ap-southeast-1
   deploy-production:
     <<: *defaults
-    environment:
-      ENV: production
     steps:
       - checkout
       - restore_cache:
@@ -95,9 +93,6 @@ jobs:
       - run:
           name: Deploy Production
           command: ENV=production yarn build && aws s3 cp --recursive ./build s3://room-service.handy.travel --region ap-southeast-1
-      - run:
-          name: copy index.html with max-age=0
-          command: aws s3 cp ./build/index.html s3://room-service.handy.travel --region ap-southeast-1 --cache-controll="max-age=0, no-cache"
 
 workflows:
   version: 2
