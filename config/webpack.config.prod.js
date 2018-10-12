@@ -18,7 +18,7 @@ const getClientEnvironment = require('./env');
 const publicPath = paths.servedPath;
 // Some apps do not use client-side routing with pushState.
 // For these, "homepage" can be set to "." to enable relative asset paths.
-const shouldUseRelativeAssetPaths = publicPath === './cardlink/build/';
+const shouldUseRelativeAssetPaths = publicPath === './';
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 // `publicUrl` is just like `publicPath`, but we will provide it to our app
@@ -66,7 +66,7 @@ module.exports = {
 		filename: 'static/js/[name].[hash:8].js',
 		chunkFilename: 'static/js/[name].chunk.js',
 		// We inferred the "public path" (such as / or /my-project) from homepage.
-		publicPath: '/room-service-app/build/',
+		publicPath: '/',
 		// Point sourcemap entries to original disk location (format as URL on Windows)
 		devtoolModuleFilenameTemplate: info =>
 			path
