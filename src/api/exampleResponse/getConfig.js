@@ -39,7 +39,7 @@ export default {
 		gratuity: [1.25, 10, 12.5],
 		timezone: 'Asia/Hong_Kong',
 		service_charge_type: 'flat',
-		locale: 'en_US',
+		locale: 'ja_JP',
 		last_modified: 1531745681,
 		contents: {
 			en_US: {

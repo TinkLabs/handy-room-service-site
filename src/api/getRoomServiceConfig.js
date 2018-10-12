@@ -1,7 +1,6 @@
-import getConfig from 'getConfig';
 import axios from './axios';
 
-export default () => axios.get(`/apis/v2/${getConfig().type}/config`)
+export default () => axios.get('/config')
 	.then(response => ({
 		room_service_config: response.data.room_service_config || {},
 		room_service_categories: response.data.room_service_categories || [],

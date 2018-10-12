@@ -63,6 +63,7 @@
     "react-dev-utils": "^4.2.1",
     "react-dom": "^16.2.0",
     "react-form-validator-core": "^0.4.4",
+    "react-helmet": "^5.2.0",
     "react-redux": "^5.0.7",
     "react-render-html": "^0.6.0",
     "react-router": "^4.2.0",
@@ -96,10 +97,10 @@
     "build-rename": "npm run build-rename-js && npm run build-rename-css",
     "build-rename-js": "renamer --regex --find 'main\\.[^\\.]+\\.js' --replace 'main.js' build/static/js/*.js",
     "build-rename-css": "renamer --regex --find 'main\\.[^\\.]+\\.css' --replace 'main.css' build/static/css/*.css",
-	"deploy:prod": "yarn build && aws s3 cp --recursive ./build s3://room-service.handy.travel --region ap-southeast-1",
-	"deploy:staging": "yarn build && aws s3 cp --recursive ./build s3://room-service-staging.handytravel.tech  --region ap-southeast-1",
-	"deploy:uat": "yarn build && aws s3 cp --recursive ./build s3://room-service-uat.handytravel.tech  --region ap-southeast-1",
-	"deploy:dev": "yarn build && aws s3 cp --recursive ./build s3://room-service-dev.handytravel.tech --region ap-southeast-1"
+    "deploy:prod": "yarn build && aws s3 cp --recursive ./build s3://room-service.handy.travel --region ap-southeast-1",
+    "deploy:staging": "yarn build && aws s3 cp --recursive ./build s3://room-service-staging.handytravel.tech  --region ap-southeast-1",
+    "deploy:uat": "yarn build && aws s3 cp --recursive ./build s3://room-service-uat.handytravel.tech  --region ap-southeast-1",
+    "deploy:dev": "yarn build && aws s3 cp --recursive ./build s3://room-service-dev.handytravel.tech --region ap-southeast-1"
   },
   "devDependencies": {
     "expose-loader": "^0.7.5",

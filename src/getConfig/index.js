@@ -8,6 +8,7 @@ const api = {
 	staging: 'https://staging.handy.travel',
 	development: 'https://dev.handy.travel',
 	uat: 'https://uat.handy.travel',
+	ldev: 'https://ldev.handy.travel',
 };
 const typesCofig = () => ({
 	dining: {
@@ -30,15 +31,20 @@ const typesCofig = () => ({
 	},
 });
 const types = Object.keys(typesCofig());
-let targetType = types[0];
-if (window.type && types.includes(window.type)) {
-	targetType = window.type;
-}
 
+
+let targetType = types[0];
+const hashArr = window.location.hash.split('/');
+if (hashArr.length >= 2 && typesCofig()[hashArr[1]]) {
+	// eslint-disable-next-line
+	targetType = hashArr[1];
+}
+console.log('ENV', process.env.ENV);
+console.log('TYPE', targetType);
 export default () => ({
 	env: process.env.ENV,
 	type: targetType,
-	host: api[process.env.ENV],
+	host: `${api[process.env.ENV]}/apis/v2/${targetType}`,
 	...typesCofig()[targetType],
 });
 

@@ -1,6 +1,5 @@
-import getConfig from 'getConfig';
 import axios from './axios';
 
-export default order => axios.post(`/apis/v2/${getConfig().type}/order`, order)
+export default order => axios.post('order', order)
 	.then(response => response.data);
 
