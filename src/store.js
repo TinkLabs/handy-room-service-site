@@ -1,7 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
-import getConfig from 'getConfig';
 import moment from 'moment';
 import Immutable from 'immutable';
 import ShoppingCart from 'records/ShoppingCart';
@@ -10,7 +9,7 @@ import rootReducer from 'modules';
 
 export const history = createHistory();
 
-const localstorageName = `${getConfig().type}_order`;
+const localstorageName = `${window.type}_order`;
 let initialState = Immutable.Map();
 const enhancers = [];
 const middleware = [

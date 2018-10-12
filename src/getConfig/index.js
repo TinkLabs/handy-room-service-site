@@ -30,11 +30,11 @@ const typesCofig = () => ({
 		title: t('In-room Shopping', {}, 'IN_ROOM_DINING'),
 	},
 });
-const types = Object.keys(typesCofig());
+const types = ['dining', 'housekeeping', 'shopping'];
 
 
 let targetType = types[0];
-if (window.type && typesCofig()[window.type]) {
+if (window.type && types.indexOf(window.type) > -1) {
 	// eslint-disable-next-line
 	targetType = window.type;
 }
