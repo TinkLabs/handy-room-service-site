@@ -275,6 +275,7 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			inject: true,
 			template: paths.appHtml,
+			filename: 'index.html',
 			minify: {
 				removeComments: true,
 				collapseWhitespace: true,
@@ -287,53 +288,32 @@ module.exports = {
 				minifyCSS: true,
 				minifyURLs: true,
 			},
-		}),
-		new HtmlWebpackPlugin({
-			inject: true,
-			template: paths.appHtmlDining,
-			minify: {
-				removeComments: true,
-				collapseWhitespace: true,
-				removeRedundantAttributes: true,
-				useShortDoctype: true,
-				removeEmptyAttributes: true,
-				removeStyleLinkTypeAttributes: true,
-				keepClosingSlash: true,
-				minifyJS: true,
-				minifyCSS: true,
-				minifyURLs: true,
+			templateParameters: {
+				type: 'dining',
 			},
 		}),
 		new HtmlWebpackPlugin({
 			inject: true,
-			template: paths.appHtmlShopping,
-			minify: {
-				removeComments: true,
-				collapseWhitespace: true,
-				removeRedundantAttributes: true,
-				useShortDoctype: true,
-				removeEmptyAttributes: true,
-				removeStyleLinkTypeAttributes: true,
-				keepClosingSlash: true,
-				minifyJS: true,
-				minifyCSS: true,
-				minifyURLs: true,
+			template: paths.appHtml,
+			filename: 'dining.html',
+			templateParameters: {
+				type: 'dining',
 			},
 		}),
 		new HtmlWebpackPlugin({
 			inject: true,
-			template: paths.appHtmlHouseKeeping,
-			minify: {
-				removeComments: true,
-				collapseWhitespace: true,
-				removeRedundantAttributes: true,
-				useShortDoctype: true,
-				removeEmptyAttributes: true,
-				removeStyleLinkTypeAttributes: true,
-				keepClosingSlash: true,
-				minifyJS: true,
-				minifyCSS: true,
-				minifyURLs: true,
+			template: paths.appHtml,
+			filename: 'shopping.html',
+			templateParameters: {
+				type: 'shopping',
+			},
+		}),
+		new HtmlWebpackPlugin({
+			inject: true,
+			template: paths.appHtml,
+			filename: 'housekeeping.html',
+			templateParameters: {
+				type: 'housekeeping',
 			},
 		}),
 		// Makes some environment variables available to the JS code, for example:
