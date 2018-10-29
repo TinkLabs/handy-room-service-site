@@ -10,7 +10,9 @@ export function get24HourFormat(timeStr = '00:00 am') {
 		hour = '00';
 	}
 	if (getLastAPM.toLowerCase() === 'pm') {
-		hour = parseInt(hour, 10) + 12;
+		if (hour !== '12') {
+			hour = parseInt(hour, 10) + 12;
+		}
 	}
 	return `${hour}:${min}`;
 }
@@ -25,6 +27,12 @@ export function isBetween(momentObj, startTimeStr = '00:00 am', endTimeStr = '11
 	const start = get24HourFormat(startTimeStr).replace(':', '');
 	const end = get24HourFormat(endTimeStr).replace(':', '');
 	const target = (momentObj || moment()).tz(timezone).format('HHmm');
+	if (start >= end) {
+		if (target >= start) {
+			return target >= end;
+		}
+		return target <= start && target <= end;
+	}
 	return target >= start && target <= end;
 }
 

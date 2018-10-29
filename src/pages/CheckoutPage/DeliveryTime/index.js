@@ -100,18 +100,33 @@ class DeliveryTimeTab extends ValidatorComponent {
 			remainder = timeDiff - (time.minute() % timeDiff);
 		}
 		time.add(remainder, 'm');
-		if (this.startTime.isBefore(time) && time.isSameOrBefore(this.endTime)) {
-			arr.push({ value: ASAP, label: t('ASAP', {}, 'ASAP') });
-		}
 		const todayDate = time.date();
-		while (time.date() === todayDate) {
-			if (this.startTime.isSameOrBefore(time) && time.isSameOrBefore(this.endTime)) {
-				arr.push({
-					value: moment(time),
-					label: time.format('HH:mm'),
-				});
+		if (this.startTime.isAfter(this.endTime)) {
+			if (this.startTime.isBefore(time)) {
+				arr.push({ value: ASAP, label: t('ASAP', {}, 'ASAP') });
 			}
-			time.add(timeDiff, 'm');
+			while (time.date() === todayDate) {
+				if (time.isSameOrAfter(this.startTime)) {
+					arr.push({
+						value: moment(time),
+						label: time.format('HH:mm'),
+					});
+				}
+				time.add(timeDiff, 'm');
+			}
+		} else {
+			if (this.startTime.isBefore(time) && time.isSameOrBefore(this.endTime)) {
+				arr.push({ value: ASAP, label: t('ASAP', {}, 'ASAP') });
+			}
+			while (time.date() === todayDate) {
+				if (this.startTime.isSameOrBefore(time) && time.isSameOrBefore(this.endTime)) {
+					arr.push({
+						value: moment(time),
+						label: time.format('HH:mm'),
+					});
+				}
+				time.add(timeDiff, 'm');
+			}
 		}
 		return arr;
 	}
@@ -124,15 +139,32 @@ class DeliveryTimeTab extends ValidatorComponent {
 		const endTime = this.endTime.add(1, 'days');
 		const tomDate = time.date();
 		const arr = [];
-		while (time.date() === tomDate) {
-			if (startTime.isSameOrBefore(time) && time.isSameOrBefore(endTime)) {
-				arr.push({
-					value: moment(time),
-					label: time.format('HH:mm'),
-				});
+		if (startTime.isAfter(endTime)) {
+			while (time.date() === tomDate) {
+				if (time.isSameOrBefore(this.endTime)) {
+					arr.push({
+						value: moment(time),
+						label: time.format('HH:mm'),
+					});
+				}
+				if (time.isSameOrAfter(this.startTime)) {
+					arr.push({
+						value: moment(time),
+						label: time.format('HH:mm'),
+					});
+				}
+				time.add(timeDiff, 'm');
 			}
-
-			time.add(timeDiff, 'm');
+		} else {
+			while (time.date() === tomDate) {
+				if (startTime.isSameOrBefore(time) && time.isSameOrBefore(endTime)) {
+					arr.push({
+						value: moment(time),
+						label: time.format('HH:mm'),
+					});
+				}
+				time.add(timeDiff, 'm');
+			}
 		}
 		return arr;
 	}
