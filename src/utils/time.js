@@ -22,6 +22,11 @@ export function converthhmmAToLT(timeStr = '00:00 am', locale) {
 	moment.locale(locale);
 	return moment(hour24, 'HH:mm').format('LT');
 }
+export function converthhmmAToHHmm(timeStr = '00:00 am', locale) {
+	const hour24 = get24HourFormat(timeStr);
+	moment.locale(locale);
+	return moment(hour24, 'HH:mm').format('HH:mm');
+}
 
 export function isBetween(momentObj, startTimeStr = '00:00 am', endTimeStr = '11:59 pm', timezone) {
 	const start = get24HourFormat(startTimeStr).replace(':', '');
