@@ -43,14 +43,12 @@ const CategoryCard = ({
 			{subtitle && <span>{subtitle}</span>}
 			{children}
 		</div>
-		{
-			<DeliveryTimeBox
-				className={classnames(styles.deliveryTimeDiv)}
-				deliveryTimeSlotEnd={deliveryTimeSlotEnd}
-				deliveryTimeSlotStart={deliveryTimeSlotStart}
-				locale={locale}
-			/>
-		}
+		<DeliveryTimeBox
+			className={styles.deliveryTimeDiv}
+			deliveryTimeSlotEnd={deliveryTimeSlotEnd}
+			deliveryTimeSlotStart={deliveryTimeSlotStart}
+			locale={locale}
+		/>
 		{hasNextArrow && <span className={classnames(styles.arrow, 'icon icon-handy-icon-right-arrow')} />}
 	</Button>
 );

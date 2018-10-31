@@ -96,7 +96,11 @@ const Homepage = ({
 			<span className="icon icon-handy-icon-phone" />
 			<span>{t('Call Reception', {}, 'CALL_TO_ORDER')}</span>
 		</Button>
-		<CheckoutButton />
+		<CheckoutButton
+			onClickCallback={() => {
+				mixpanel().track('IRD Checkout Click', mixpanelProperties);
+			}}
+		/>
 
 	</div>
 );

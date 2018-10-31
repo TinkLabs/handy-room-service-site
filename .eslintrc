@@ -8,7 +8,8 @@
         }
     },
     "globals": {
-        "Console": true
+        "Console": true,
+        "test": true,
     },
     "rules":{
         "indent": [2, "tab", { "SwitchCase": 1, "VariableDeclarator": 1 }],
