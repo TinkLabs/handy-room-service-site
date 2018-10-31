@@ -21,21 +21,15 @@
 		background-color: #ddd;
 		@include boxShadowDarker;
 	}
-    :global(.delivery-time-slot) {
-        position: absolute;
-        top: 55%;
-        right: 21px;
-        transform: translateY(-50%);
-        color: #888;
-        font-weight: 300;
-        font-size: 16px;
-    }
+
 }
 
 .textDiv{
-	width: 100%;
-	padding-right: 125px;
-	display: block;
+	min-width: calc(100% - 120px);
+	max-width: 100%;
+	display: inline-block;
+	vertical-align: middle;
+
 	line-height: 20px;
 	div {
 		
@@ -64,18 +58,17 @@
 	font-size: 17px;
 	vertical-align: middle;
 	margin-right: 5px;
+	margin-top: 2px;
 }
 
 .deliveryTimeDiv {
-	position: absolute;
-	top: 55%;
-	right: 21px;
-	transform: translateY(-50%);
+	position: relative;
+	display: inline-block;
+	width: 119px;
 	color: #888;
 	font-weight: 300;
 	font-size: 16px;
 }
-
 .icon{
 
 }

@@ -144,7 +144,11 @@ class CategoryPage extends React.Component {
 							enableActiveHighlight
 						/>
 					))}
-					<CheckoutButton />
+					<CheckoutButton
+						onClickCallback={() => {
+							mixpanel().track('IRD Checkout Click', mixpanelProperties);
+						}}
+					/>
 				</div>
 			</div>
 		);
