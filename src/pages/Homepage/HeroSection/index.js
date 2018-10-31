@@ -2,6 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import getConfig from 'getConfig';
+import renderHTML from 'react-render-html';
 import { Button } from 'components';
 import styles from './style.scss';
 // import circleArrow from './circle.svg';
@@ -34,7 +35,7 @@ const HeroSection = ({
 		>
 			<div className={styles.overlayText}>
 				<h1>{title || getConfig().heroTitle}</h1>
-				{subtitle ? <p>{subtitle}</p> : null}
+				{subtitle ? <p>{renderHTML(subtitle.replace('\r\n', '<br />'))}</p> : null}
 			</div>
 		</div>
 		<Button
