@@ -48,6 +48,12 @@ const OrderHistoryCard = ({
 						<span className={styles.price}>{priceDisplay(symbol, roomServiceOrder.get('total_charge'))}</span>
 					</div>
 					: null }
+				{roomServiceOrder.get('tax') ?
+					<div className={styles.serviceCharge}>
+						<span className={styles.label}>{t('Tax', {}, 'TAX_CHARGE')}</span>
+						<span className={styles.price}>{priceDisplay(symbol, roomServiceOrder.get('tax'))}</span>
+					</div>
+					: null }
 				<div className={styles.totalCharge}>
 					<span className={styles.label}>{t('Total', {}, 'TOTAL')}</span>
 					<span className={styles.price}>

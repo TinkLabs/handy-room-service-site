@@ -10,3 +10,4 @@ export { default as Incrementer } from './Incrementer';
 export { default as PopUpBox } from './PopUpBox';
 export { default as Button } from './Button';
 export { default as Loading } from './Loading';
+export { default as ScrollToTopRoute } from './ScrollToTopRoute';

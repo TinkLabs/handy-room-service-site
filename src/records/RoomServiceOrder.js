@@ -12,6 +12,7 @@ export default class RoomServiceOrder extends Immutable.Record({
 	total_charge: 0, // service_charge
 	total_price: 0, // total_charge
 	gratuity: 0, // gratuity
+	tax: 0,
 	delivery_datetime: null,
 	delivery_location: '',
 	created: null, // moment()

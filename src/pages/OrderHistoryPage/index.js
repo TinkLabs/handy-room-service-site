@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Immutable from 'immutable';
 import { withRouter } from 'react-router-dom';
-import { Header } from 'components';
+import { Header, Loading } from 'components';
 import t from 'translation';
 import mixpanel from 'utils/mixpanel';
 import OrderHistoryCard from './OrderHistoryCard';
@@ -22,6 +22,7 @@ class OrderHistoryPage extends Component {
 		super(props);
 		this.state = {
 			orderHistory: Immutable.List(),
+			loading: true,
 		};
 	}
 	componentWillMount() {
@@ -30,6 +31,7 @@ class OrderHistoryPage extends Component {
 				room_service_orders,
 			}) => {
 				this.setState({
+					loading: false,
 					orderHistory:
 						Immutable.List(room_service_orders.map(order => new RoomServiceOrder(order))),
 				});
@@ -48,6 +50,9 @@ class OrderHistoryPage extends Component {
 				</Header>
 				<div className="container">
 					<h1>{t('Order History')}</h1>
+					<div>
+						<Loading show={this.state.loading} />
+					</div>
 					{ this.state.orderHistory.map((order, i) => {
 						const orderCreatedDate = order.get('created');
 						if (i < 1 || !this.state.orderHistory.get(i - 1).get('created').isSame(orderCreatedDate, 'date')) {

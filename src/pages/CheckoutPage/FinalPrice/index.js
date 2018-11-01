@@ -36,7 +36,7 @@ class FinalPrice extends React.Component {
 		const orderArray = order.get('shoppingCart').valueSeq().toArray();
 		const subTotal = orderArray.length > 0 ? orderArray
 			.reduce((acc, item) => acc + item.totalItemCost(), 0) : 0;
-		const tax = calculateTax(
+		const { tax, serviceCharge } = calculateTax(
 			subTotal,
 			serviceChargeFlat,
 			serviceChargePercentage,
@@ -65,14 +65,22 @@ class FinalPrice extends React.Component {
 		return (
 			<footer className={classnames('container', styles.footer, { hideFooter })}>
 				{gratuityDiv}
-				<div className={styles.serviceCharge}>
-					<span className={styles.label}>{t('Service Charge', {}, 'SERVICE_CHARGE')}</span>
-					<span className={styles.price}>{priceDisplay(currency_symbol, tax)}</span>
-				</div>
+				{serviceChargeFlat || serviceChargePercentage ?
+					<div className={styles.serviceCharge}>
+						<span className={styles.label}>{t('Service Charge', {}, 'SERVICE_CHARGE')}</span>
+						<span className={styles.price}>{priceDisplay(currency_symbol, serviceCharge)}</span>
+					</div>
+					: null}
+				{taxCharge ?
+					<div className={styles.serviceCharge}>
+						<span className={styles.label}>{t('Tax', {}, 'TAX_CHARGE')}</span>
+						<span className={styles.price}>{priceDisplay(currency_symbol, tax)}</span>
+					</div>
+					: null}
 				<div className={styles.totalCharge}>
 					<span className={styles.label}>{t('Total', {}, 'TOTAL')}</span>
 					<span className={styles.price}>
-						{priceDisplay(currency_symbol, subTotal + tax + gratuityPrice)}
+						{priceDisplay(currency_symbol, subTotal + tax + gratuityPrice + serviceCharge)}
 					</span>
 				</div>
 				<Button className="btn orange" onClick={this.props.onSubmit}>{t('Confirm order', {}, 'CONFIRM')}</Button>
