@@ -46,7 +46,7 @@ jobs:
     environment:
       ENV: sandbox
       S3_BUCKET: s3://room-service-sandbox.handytravel.tech
-      CLOUDFRONT_ID: E32OX7EPKG3UDU
+      CLOUDFRONT_ID: E21R602T7B2V3R
     <<: *defaults
   deploy-uat:
     environment:
@@ -77,7 +77,7 @@ workflows:
       - deploy-sandbox:
           filters:
             branches:
-              only: sandbox
+              only: master
       - deploy-uat:
           filters:
             branches:
