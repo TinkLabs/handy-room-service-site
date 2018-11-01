@@ -9,6 +9,8 @@ import t from 'translation';
 import { Element, scroller } from 'react-scroll';
 import { isBetween, isAvailableDay } from 'utils/time';
 import { roundTo2Decimal } from 'utils/price';
+import mixpanel from 'utils/mixpanel';
+
 import submitOrder from './submit';
 
 import DeliveryTime from './DeliveryTime';
@@ -22,6 +24,11 @@ import ItemList from './ItemList';
 import FinalPrice from './FinalPrice';
 import styles from './style.scss';
 
+const mixpanelProperties = {
+	category: 'checkout',
+	subcategory: 'index',
+	screen_name: 'ird_checkout_index',
+};
 
 class CheckoutPage extends React.Component {
 	constructor(props) {
@@ -165,14 +172,24 @@ class CheckoutPage extends React.Component {
 							<DeliveryLocation />
 							: null}
 						<Remarks
-							onFocus={this.hideFooter}
+							onFocus={(e) => {
+								this.hideFooter(e);
+								mixpanel().track('IRD Order Remarks Click', {
+									...mixpanelProperties,
+								});
+							}}
 							onBlur={this.showFooter}
 						/>
 					</div>
 					<div className={classnames('card', styles.card)}>
 						<Element name="guest_name">
 							<Name
-								onFocus={this.hideFooter}
+								onFocus={(e) => {
+									this.hideFooter(e);
+									mixpanel().track('IRD Order Name Click', {
+										...mixpanelProperties,
+									});
+								}}
 								onBlur={this.showFooter}
 								name="guest_name"
 								validators={['required']}
@@ -182,7 +199,12 @@ class CheckoutPage extends React.Component {
 						<hr />
 						<Element name="room_num">
 							<RoomNum
-								onFocus={this.hideFooter}
+								onFocus={(e) => {
+									this.hideFooter(e);
+									mixpanel().track('IRD Order Room Number Click', {
+										...mixpanelProperties,
+									});
+								}}
 								onBlur={this.showFooter}
 								name="room_num"
 								validators={['required', 'isMatchRoomNum']}
