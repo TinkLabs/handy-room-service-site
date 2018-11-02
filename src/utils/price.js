@@ -29,7 +29,10 @@ export function calculateTax(
 		serviceChargeAmount += serviceChargeFlat;
 	}
 
-	return Math.round((taxChargeAmount + serviceChargeAmount) * 100) / 100;
+	return {
+		tax: Math.round((taxChargeAmount) * 100) / 100,
+		serviceCharge: Math.round((serviceChargeAmount) * 100) / 100,
+	};
 }
 export function roundTo2Decimal(price) {
 	return (Math.round((parseFloat(price)) * 100) / 100);

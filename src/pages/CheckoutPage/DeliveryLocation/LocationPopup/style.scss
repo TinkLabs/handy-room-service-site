@@ -6,6 +6,8 @@
 }
 .options {
 	padding: 20px !important; 
+	max-height: 220px;
+	overflow: overlay;
 }
 .bottomControls {
 	@include boxShadowSoft;

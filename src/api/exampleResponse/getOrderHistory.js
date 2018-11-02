@@ -6,6 +6,8 @@ export default {
 			hotel_guest_name: '2',
 			special_requests: '',
 			payment_method: 'cash',
+			gratuity: 1.2,
+			tax: 12.0,
 			total_charge: 70.00,
 			total_price: 80.00,
 			delivery_datetime: 1531989322,

@@ -9,6 +9,7 @@ const api = {
 	development: 'https://dev.handy.travel',
 	uat: 'https://uat.handy.travel',
 	ldev: 'https://ldev.handy.travel',
+	sandbox: 'https://sandbox.handy.travel',
 };
 const typesCofig = () => ({
 	dining: {
