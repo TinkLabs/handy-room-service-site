@@ -4,7 +4,16 @@
 html {
 	height: 100%;
 }
-
+:global(#root) {
+	padding-top: 55px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	overflow: overlay;
+}
 body {
 	margin: 0;
 	padding: 0;

@@ -9,7 +9,7 @@ import getRoomServiceConfig from 'api/getRoomServiceConfig';
 import { initRoomServiceConfig } from 'modules/roomServiceConfig';
 import { initRoomServiceCategories } from 'modules/roomServiceCategories';
 import { initRoomServiceItems } from 'modules/roomServiceItems';
-import ScrollToTopRoute from 'components/ScrollToTopRoute';
+import { ScrollToTopRoute, Loading } from 'components';
 import getConfig from 'getConfig';
 import Homepage from './Homepage';
 import ItemPage from './ItemPage';
@@ -63,7 +63,13 @@ class App extends Component {
 				</h2>
 			);
 		}
-		if (!this.state.loaded) return null;
+		if (!this.state.loaded) {
+			return (
+				<div>
+					<Loading show />
+				</div>
+			);
+		}
 		return (
 			<React.Fragment>
 				<Helmet>

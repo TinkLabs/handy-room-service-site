@@ -49,6 +49,7 @@ class CheckoutPage extends React.Component {
 			duration: 500,
 			smooth: true,
 			offset: -80,
+			containerId: 'root',
 		});
 	}
 	onSubmit() {

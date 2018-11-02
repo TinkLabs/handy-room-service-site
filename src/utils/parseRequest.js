@@ -1,6 +1,6 @@
 
 
-export default (order, gratuity, tax, subTotal, locale = 'en_US') => {
+export default (order, gratuity, tax, serviceCharge, subTotal, locale = 'en_US') => {
 	const orderReducerImmutable = order;
 	console.log(orderReducerImmutable.toJSON());
 	const result = {
@@ -12,10 +12,11 @@ export default (order, gratuity, tax, subTotal, locale = 'en_US') => {
 		delivery_location: orderReducerImmutable.get('delivery_location') || '',
 		payment_method: orderReducerImmutable.get('payment_method') || '',
 		room_service_items: [],
-		total_charge: tax,
+		total_charge: serviceCharge,
+		tax,
 		sub_total: subTotal,
 		gratuity,
-		total_price: Math.round((subTotal + tax + gratuity) * 100) / 100,
+		total_price: Math.round((subTotal + tax + serviceCharge + gratuity) * 100) / 100,
 	};
 
 	orderReducerImmutable.get('shoppingCart').valueSeq().forEach((cartItem) => {

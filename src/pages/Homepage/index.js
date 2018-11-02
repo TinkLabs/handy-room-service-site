@@ -51,7 +51,7 @@ const Homepage = ({
 					duration: 500,
 					smooth: true,
 					offset: -56,
-					// containerId: 'page',
+					containerId: 'root',
 				});
 			}}
 		/>
