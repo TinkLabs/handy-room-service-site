@@ -35,7 +35,7 @@ const HeroSection = ({
 		>
 			<div className={styles.overlayText}>
 				<h1>{title || getConfig().heroTitle}</h1>
-				{subtitle ? <p>{renderHTML(subtitle.replace('\r\n', '<br />'))}</p> : null}
+				{subtitle ? <p>{renderHTML(subtitle.split('\r\n').join('<br />'))}</p> : null}
 			</div>
 		</div>
 		<Button
