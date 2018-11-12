@@ -71,7 +71,7 @@ class OrderConfirmPage extends React.Component {
 							{t('Your order has been placed.', {}, 'ORDER_PLACED_TITLE')}
 						</h2>
 						<p>
-							{t('We have received your order and will prepare the food accordingly.', {}, 'ORDER_PLACED_DETAIL')}
+							{t('We have received your order and will prepare the order accordingly.', {}, 'ORDER_PLACED_DETAIL')}
 						</p>
 					</div>
 					<hr />
