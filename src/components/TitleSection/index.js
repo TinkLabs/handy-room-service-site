@@ -54,7 +54,7 @@ const TitleSection = ({
 		<div className={styles.backgroundColor} style={{ backgroundColor }} />
 		{title ? <div className={styles.text}><h2>{title}</h2></div> : null}
 		{details ? <p className={styles.details}>{details}</p> : null}
-		{ deliveryTimeSlotStart && deliveryTimeSlotEnd ?
+		{ (deliveryTimeSlotStart && deliveryTimeSlotEnd) || weekdaysAvailable.size ?
 			<div className={styles.details}>
 				<DeliveryTimeBox
 					className={classnames(styles.deliveryTimeDiv)}
