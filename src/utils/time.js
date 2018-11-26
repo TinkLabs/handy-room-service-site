@@ -29,8 +29,8 @@ export function converthhmmAToHHmm(timeStr = '00:00 am', locale) {
 }
 
 export function isBetween(momentObj, startTimeStr = '00:00 am', endTimeStr = '11:59 pm', timezone) {
-	const start = get24HourFormat(startTimeStr).replace(':', '');
-	const end = get24HourFormat(endTimeStr).replace(':', '');
+	const start = get24HourFormat(startTimeStr || '00:00 am').replace(':', '');
+	const end = get24HourFormat(endTimeStr || '11:59 pm').replace(':', '');
 	const target = (momentObj || moment()).tz(timezone).format('HHmm');
 	if (start >= end) {
 		if (target >= start) {
