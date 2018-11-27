@@ -56,19 +56,19 @@ const TitleSection = ({
 		{details ? <p className={styles.details}>{details}</p> : null}
 		{ (deliveryTimeSlotStart && deliveryTimeSlotEnd) ||
 			(weekdaysAvailable && weekdaysAvailable.size) ?
-			<div className={styles.details}>
-				<DeliveryTimeBox
-					className={classnames(styles.deliveryTimeDiv)}
-					deliveryTimeSlotEnd={deliveryTimeSlotEnd}
-					deliveryTimeSlotStart={deliveryTimeSlotStart}
-					locale={locale}
-				/>
-				<div className={styles.right}>
-					<span className={classnames(classnames(styles.calendar), 'icon icon-handy-icon-order')} />
-					{getWeekdaysAvailableText(weekdaysAvailable)}
+				<div className={styles.details}>
+					<DeliveryTimeBox
+						className={classnames(styles.deliveryTimeDiv)}
+						deliveryTimeSlotEnd={deliveryTimeSlotEnd}
+						deliveryTimeSlotStart={deliveryTimeSlotStart}
+						locale={locale}
+					/>
+					<div className={styles.right}>
+						<span className={classnames(classnames(styles.calendar), 'icon icon-handy-icon-order')} />
+						{getWeekdaysAvailableText(weekdaysAvailable)}
+					</div>
 				</div>
-			</div>
-			: null
+				: null
 		}
 		{hintText ? <span className={styles.hint}>{hintText}</span> : null}
 	</div>
