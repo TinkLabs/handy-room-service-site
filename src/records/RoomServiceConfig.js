@@ -1,4 +1,5 @@
 import Immutable from 'immutable';
+import Android from 'utils/Android';
 import I18nString from './I18nString';
 
 export default class RoomServiceConfig extends Immutable.Record({
@@ -50,6 +51,7 @@ export default class RoomServiceConfig extends Immutable.Record({
 			hotel_config_id: parseInt(obj.hotel_config_id, 10),
 			contents: Immutable.fromJS(obj.contents),
 			location_options: locationMap,
+			locale: Android().device_locale || obj.locale,
 		});
 	}
 }
