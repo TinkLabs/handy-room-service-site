@@ -3,7 +3,8 @@ import Android from 'utils/Android';
 import renderHTML from 'react-render-html';
 
 const DebugPage = () => (
-	<div>
+	<div style={{ fontSize: 10 }}>
+		Domain: {window.location.href}
 		{JSON.stringify(Android())}
 		{renderHTML(JSON.stringify(document.cookie).split(';').join('<br />'))}
 	</div>
