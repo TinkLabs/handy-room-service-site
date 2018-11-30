@@ -1,5 +1,7 @@
 import Immutable from 'immutable';
+import cookie from 'utils/Cookie';
 import I18nString from './I18nString';
+
 
 export default class RoomServiceConfig extends Immutable.Record({
 	loaded: false,
@@ -50,6 +52,7 @@ export default class RoomServiceConfig extends Immutable.Record({
 			hotel_config_id: parseInt(obj.hotel_config_id, 10),
 			contents: Immutable.fromJS(obj.contents),
 			location_options: locationMap,
+			locale: cookie('locale') || obj.locale,
 		});
 	}
 }

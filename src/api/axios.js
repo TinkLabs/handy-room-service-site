@@ -1,5 +1,6 @@
 import axios from 'axios';
 import getConfig from 'getConfig';
+import cookie from 'utils/Cookie';
 import getConfigExample from './exampleResponse/getConfig';
 import getOrderHistoryExample from './exampleResponse/getOrderHistory';
 
@@ -8,7 +9,7 @@ const axiosInstance = axios.create({
 	withCredentials: true,
 });
 
-const barcode = new URLSearchParams(window.location.search).get('_barcode');
+const barcode = new URLSearchParams(window.location.search).get('_barcode') || cookie('barcode');
 // eslint-disable-next-line
 const host = new URLSearchParams(window.location.search).get('host');
 // eslint-disable-next-line
