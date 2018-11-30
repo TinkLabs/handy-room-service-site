@@ -13,7 +13,7 @@ const barcode = new URLSearchParams(window.location.search).get('_barcode') || c
 // eslint-disable-next-line
 const host = new URLSearchParams(window.location.search).get('host');
 // eslint-disable-next-line
-alert(document.cookie);
+alert(cookie('barcode'));
 if (barcode) {
 	axiosInstance.interceptors.request.use(
 		(config) => {
@@ -28,6 +28,7 @@ if (barcode) {
 	);
 }
 
+// inject fake api response
 if (getConfig().useTestData) {
 	axiosInstance.interceptors.response.use(
 		response => response,
