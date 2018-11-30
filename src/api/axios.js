@@ -9,6 +9,7 @@ const axiosInstance = axios.create({
 });
 
 const barcode = new URLSearchParams(window.location.search).get('_barcode');
+// eslint-disable-next-line
 const host = new URLSearchParams(window.location.search).get('host');
 // eslint-disable-next-line
 alert(document.cookie);
