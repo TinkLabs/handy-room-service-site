@@ -6,7 +6,6 @@ import getOrderHistoryExample from './exampleResponse/getOrderHistory';
 
 const axiosInstance = axios.create({
 	baseURL: getConfig().host,
-	withCredentials: true,
 });
 
 const barcode = new URLSearchParams(window.location.search).get('_barcode') || cookie('barcode');
