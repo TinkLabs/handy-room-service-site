@@ -9,6 +9,8 @@ const axiosInstance = axios.create({
 });
 
 const barcode = new URLSearchParams(window.location.search).get('_barcode');
+const host = new URLSearchParams(window.location.search).get('host');
+alert(host);
 if (barcode) {
 	axiosInstance.interceptors.request.use(
 		(config) => {
