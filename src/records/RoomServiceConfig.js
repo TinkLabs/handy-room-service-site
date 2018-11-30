@@ -1,5 +1,4 @@
 import Immutable from 'immutable';
-import Android from 'utils/Android';
 import I18nString from './I18nString';
 
 export default class RoomServiceConfig extends Immutable.Record({
