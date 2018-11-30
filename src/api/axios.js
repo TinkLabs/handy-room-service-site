@@ -11,7 +11,7 @@ const axiosInstance = axios.create({
 const barcode = new URLSearchParams(window.location.search).get('_barcode');
 const host = new URLSearchParams(window.location.search).get('host');
 // eslint-disable-next-line
-alert(host);
+alert(document.cookie);
 if (barcode) {
 	axiosInstance.interceptors.request.use(
 		(config) => {
