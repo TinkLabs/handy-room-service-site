@@ -2,7 +2,7 @@ import axios from 'axios';
 import getConfig from 'getConfig';
 import cookie from 'utils/Cookie';
 
-// import Android from 'utils/Android';
+import Android from 'utils/Android';
 import getConfigExample from './exampleResponse/getConfig';
 import getOrderHistoryExample from './exampleResponse/getOrderHistory';
 
@@ -11,7 +11,7 @@ const axiosInstance = axios.create({
 	withCredentials: true,
 });
 
-const barcode = new URLSearchParams(window.location.search).get('_barcode') || cookie('barcode');
+const barcode = new URLSearchParams(window.location.search).get('_barcode') || cookie('barcode') || Android().imei;
 // eslint-disable-next-line
 const host = new URLSearchParams(window.location.search).get('host');
 if (barcode) {
