@@ -61,7 +61,7 @@ class App extends Component {
 			return (
 				<h2 style={{ textAlign: 'center' }}>
 					{t('Coming Soon...')}
-					<span style={{ color: '#f4f4f4', width: '100%', wordBreak: 'all' }}><DebugPage /></span>
+					<span style={{ color: '#f4f4f4', width: '100%' }}><DebugPage /></span>
 				</h2>
 			);
 		}
