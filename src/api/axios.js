@@ -1,13 +1,19 @@
 import axios from 'axios';
 import getConfig from 'getConfig';
+import cookie from 'utils/Cookie';
+
+import Android from 'utils/Android';
 import getConfigExample from './exampleResponse/getConfig';
 import getOrderHistoryExample from './exampleResponse/getOrderHistory';
 
 const axiosInstance = axios.create({
 	baseURL: getConfig().host,
+	withCredentials: true,
 });
 
-const barcode = new URLSearchParams(window.location.search).get('_barcode');
+const barcode = new URLSearchParams(window.location.search).get('_barcode') || cookie('barcode') || Android().imei;
+// eslint-disable-next-line
+const host = new URLSearchParams(window.location.search).get('host');
 if (barcode) {
 	axiosInstance.interceptors.request.use(
 		(config) => {
@@ -22,6 +28,7 @@ if (barcode) {
 	);
 }
 
+// inject fake api response
 if (getConfig().useTestData) {
 	axiosInstance.interceptors.response.use(
 		response => response,

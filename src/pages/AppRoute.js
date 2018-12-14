@@ -19,6 +19,7 @@ import CategoryPage from './CategoryPage';
 import OrderConfirmPage from './OrderConfirmPage';
 import ErrorTryAgainPage from './ErrorTryAgainPage';
 import ErrorRefreshPage from './ErrorRefreshPage';
+import DebugPage from './DebugPage';
 
 const propTypes = {
 };
@@ -60,6 +61,7 @@ class App extends Component {
 			return (
 				<h2 style={{ textAlign: 'center' }}>
 					{t('Coming Soon...')}
+					<span style={{ color: '#f4f4f4', width: '100%' }}><DebugPage /></span>
 				</h2>
 			);
 		}
