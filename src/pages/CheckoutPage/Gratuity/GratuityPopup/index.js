@@ -5,9 +5,9 @@ import { PopUpBox, RadioButton, Button } from 'components';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
-import { priceDisplay, roundTo2Decimal } from 'utils/price';
+import { priceDisplay, roundToDecimal } from 'utils/price';
 
-import t from 'translation';
+import t, { getTranslation } from 'translation';
 import AnswerCard from './AnswerCard';
 import styles from './style.scss';
 
@@ -56,7 +56,7 @@ class GratuityPopup extends React.Component {
 	onBlur() {
 		this.setState({
 			// eslint-disable-next-line
-			gratuity: !this.state.gratuity || isNaN(this.state.gratuity) ? this.state.gratuity : roundTo2Decimal(this.state.gratuity),
+			gratuity: !this.state.gratuity || isNaN(this.state.gratuity) ? this.state.gratuity : roundToDecimal(this.state.gratuity, this.props.currency_decimal_places),
 		}, () => {
 			this.setState({
 				focusInput: false,
@@ -73,7 +73,7 @@ class GratuityPopup extends React.Component {
 			return false;
 		}
 		// eslint-disable-next-line
-		if (parseFloat(this.state.gratuity, 10) < roundTo2Decimal((this.props.subTotal * this.props.minOption) / 100)) {
+		if (parseFloat(this.state.gratuity, 10) < roundToDecimal((this.props.subTotal * this.props.minOption) / 100), this.props.currency_decimal_places) {
 			return false;
 		}
 		return true;
@@ -83,6 +83,7 @@ class GratuityPopup extends React.Component {
 			currency_symbol,
 			minOption,
 			subTotal,
+			currency_decimal_places,
 		} = this.props;
 		const {
 			gratuity_option,
@@ -102,7 +103,11 @@ class GratuityPopup extends React.Component {
 								leftDiv={t('<b>%{percentage}%</b> of subtotal', { percentage: gratuityOpt, renderHTML: true })}
 							>
 								<div className={styles.price}>
-									{priceDisplay(currency_symbol, (gratuityOpt * subTotal) / 100)}
+									{priceDisplay(
+										currency_symbol,
+										(gratuityOpt * subTotal) / 100,
+										currency_decimal_places,
+									)}
 								</div>
 								<RadioButton
 									selected={gratuity_option === gratuityOpt}
@@ -126,7 +131,7 @@ class GratuityPopup extends React.Component {
 							>
 								<input
 									name="amount"
-									placeholder={t('Other Amount')}
+									placeholder={getTranslation(this.props.locale, 'Other Amount')}
 									value={gratuity}
 									onChange={this.onChangeInput}
 									onFocus={this.onFocus}
@@ -136,7 +141,7 @@ class GratuityPopup extends React.Component {
 						}
 					>
 						<div className={classnames(styles.priceSuggestion, { error: this.state.error })}>
-							{t('Minimum %{price}', { price: priceDisplay(currency_symbol, (minOption * subTotal) / 100) })}
+							{t('Minimum %{price}', { price: priceDisplay(currency_symbol, (minOption * subTotal) / 100, currency_decimal_places) })}
 						</div>
 						<RadioButton
 							selected={gratuity_option === 'custom'}
@@ -176,6 +181,8 @@ const mapStateToProps = (state) => {
 		minOption: state.getIn(['roomServiceConfig', 'gratuity', 0], 0),
 		subTotal,
 		currency_symbol: state.getIn(['roomServiceConfig', 'currency_symbol']),
+		currency_decimal_places: state.getIn(['roomServiceConfig', 'currency_decimal_places']),
+		locale: state.getIn(['roomServiceConfig', 'locale']),
 	};
 };
 

@@ -78,6 +78,7 @@ class ItemList extends React.Component {
 			onAdd,
 			onRemove,
 			currency_symbol,
+			currency_decimal_places,
 		} = this.props;
 		let total = 0;
 		const itemcardList = [];
@@ -146,7 +147,9 @@ class ItemList extends React.Component {
 				))}
 				<div className="container">
 					<span className={styles.label}>{t('Subtotal')}</span>
-					<span className={styles.price}>{priceDisplay(currency_symbol, total)}</span>
+					<span className={styles.price}>
+						{priceDisplay(currency_symbol, total, currency_decimal_places)}
+					</span>
 				</div>
 			</div>
 		);
@@ -158,6 +161,7 @@ const mapStateToProps = state => ({
 	locale: state.getIn(['roomServiceConfig', 'locale']),
 	roomServiceItems: state.get('roomServiceItems'),
 	currency_symbol: state.getIn(['roomServiceConfig', 'currency_symbol'], '$'),
+	currency_decimal_places: state.getIn(['roomServiceConfig', 'currency_decimal_places']),
 });
 
 

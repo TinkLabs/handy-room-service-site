@@ -43,7 +43,7 @@ console.log('TYPE', targetType);
 export default () => ({
 	env: process.env.ENV,
 	type: targetType,
-	useTestData: false,
+	useTestData: true,
 	host: `${api[process.env.ENV]}/apis/v2/${targetType}`,
 	...typesConfig()[targetType],
 });

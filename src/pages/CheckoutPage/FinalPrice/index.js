@@ -32,6 +32,7 @@ class FinalPrice extends React.Component {
 			hideFooter,
 			gratuity_option,
 			gratuity,
+			currency_decimal_places,
 		} = this.props;
 		const orderArray = order.get('shoppingCart').valueSeq().toArray();
 		const subTotal = orderArray.length > 0 ? orderArray
@@ -50,7 +51,9 @@ class FinalPrice extends React.Component {
 			gratuityDiv = (
 				<div className={styles.serviceCharge}>
 					<span className={styles.label}>{t('Custom Gratuity')}</span>
-					<span className={styles.price}>{priceDisplay(currency_symbol, gratuityPrice)}</span>
+					<span className={styles.price}>
+						{priceDisplay(currency_symbol, gratuityPrice, currency_decimal_places)}
+					</span>
 				</div>
 			);
 		} else if (gratuity_option) {
@@ -58,7 +61,9 @@ class FinalPrice extends React.Component {
 			gratuityDiv = (
 				<div className={styles.serviceCharge}>
 					<span className={styles.label}>{t('%{percentage} Gratuity', { percentage: `${gratuity_option}%` })}</span>
-					<span className={styles.price}>{priceDisplay(currency_symbol, gratuityPrice)}</span>
+					<span className={styles.price}>
+						{priceDisplay(currency_symbol, gratuityPrice, currency_decimal_places)}
+					</span>
 				</div>
 			);
 		}
@@ -68,19 +73,27 @@ class FinalPrice extends React.Component {
 				{serviceChargeFlat || serviceChargePercentage ?
 					<div className={styles.serviceCharge}>
 						<span className={styles.label}>{t('Service Charge', {}, 'SERVICE_CHARGE')}</span>
-						<span className={styles.price}>{priceDisplay(currency_symbol, serviceCharge)}</span>
+						<span className={styles.price}>
+							{priceDisplay(currency_symbol, serviceCharge, currency_decimal_places)}
+						</span>
 					</div>
 					: null}
 				{taxCharge ?
 					<div className={styles.serviceCharge}>
 						<span className={styles.label}>{t('Tax', {}, 'TAX_CHARGE')}</span>
-						<span className={styles.price}>{priceDisplay(currency_symbol, tax)}</span>
+						<span className={styles.price}>
+							{priceDisplay(currency_symbol, tax, currency_decimal_places)}
+						</span>
 					</div>
 					: null}
 				<div className={styles.totalCharge}>
 					<span className={styles.label}>{t('Total', {}, 'TOTAL')}</span>
 					<span className={styles.price}>
-						{priceDisplay(currency_symbol, subTotal + tax + gratuityPrice + serviceCharge)}
+						{priceDisplay(
+							currency_symbol,
+							subTotal + tax + gratuityPrice + serviceCharge,
+							currency_decimal_places,
+						)}
 					</span>
 				</div>
 				<Button className="btn orange" onClick={this.props.onSubmit}>{t('Confirm order', {}, 'CONFIRM')}</Button>
@@ -101,6 +114,7 @@ const mapStateToProps = state => ({
 	taxCharge: state.getIn(['roomServiceConfig', 'tax_charge'], 0),
 	serviceTaxChargeCalculation: state.getIn(['roomServiceConfig', 'service_tax_charge_calculation'], false),
 	currency_symbol: state.getIn(['roomServiceConfig', 'currency_symbol']),
+	currency_decimal_places: state.getIn(['roomServiceConfig', 'currency_decimal_places']),
 });
 
 export default withRouter(connect(mapStateToProps, null)(FinalPrice));

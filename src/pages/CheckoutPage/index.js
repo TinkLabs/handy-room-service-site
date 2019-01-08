@@ -8,7 +8,7 @@ import { Header, TitleSection, Loading } from 'components';
 import t from 'translation';
 import { Element, scroller } from 'react-scroll';
 import { isBetween, isAvailableDay } from 'utils/time';
-import { roundTo2Decimal } from 'utils/price';
+import { roundToDecimal } from 'utils/price';
 import mixpanel from 'utils/mixpanel';
 
 import submitOrder from './submit';
@@ -117,7 +117,7 @@ class CheckoutPage extends React.Component {
 				.reduce((acc, item) => acc + item.totalItemCost(), 0) : 0;
 			const minCost = (subTotal * this.props.config.minOption) / 100;
 			if (gratuity_option === null) return false;
-			if (gratuity_option === 'custom' && gratuity < roundTo2Decimal(minCost)) {
+			if (gratuity_option === 'custom' && gratuity < roundToDecimal(minCost, this.props.config.currency_decimal_places)) {
 				return false;
 			}
 			return true;
@@ -256,6 +256,7 @@ const mapStateToProps = state => ({
 		locale: state.getIn(['roomServiceConfig', 'locale'], 0),
 		serviceTaxChargeCalculation: state.getIn(['roomServiceConfig', 'service_tax_charge_calculation'], false),
 		minOption: state.getIn(['roomServiceConfig', 'gratuity', 0], 0),
+		currency_decimal_places: state.getIn(['roomServiceConfig', 'currency_decimal_places']),
 	},
 	roomNum: state.getIn(['order', 'hotel_room_number']),
 	delivery_time: state.getIn(['order', 'delivery_time']),
