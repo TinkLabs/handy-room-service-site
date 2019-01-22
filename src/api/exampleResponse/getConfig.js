@@ -13,6 +13,7 @@ export default {
 		theme_color: '#000f23',
 		currency_code: 'EUR',
 		currency_symbol: '€',
+		currency_decimal_places: 0,
 		type: 'dining',
 		delivery_time_slot_start: '11:00am',
 		delivery_time_slot_end: '23:59pm',

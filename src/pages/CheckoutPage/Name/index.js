@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { updateGuestName } from 'modules/order';
-import t from 'translation';
+import t, { getTranslation } from 'translation';
 import styles from './style.scss';
 
 const propTypes = {
@@ -44,6 +44,7 @@ class NameTab extends ValidatorComponent {
 			validatorListener,
 			staticContext,
 			onEnter,
+			locale,
 			...rest
 		} = this.props;
 		return (
@@ -61,7 +62,7 @@ class NameTab extends ValidatorComponent {
 							}
 							return true;
 						}}
-						placeholder={t('Your check-in name', {}, 'HOTEL_GUEST_NAME_PLACEHOLDER')}
+						placeholder={getTranslation(locale, 'Your check-in name', {}, 'HOTEL_GUEST_NAME_PLACEHOLDER')}
 						ref={(r) => { this.input = r; }}
 						{...rest}
 					/>
@@ -76,6 +77,7 @@ NameTab.defaultProps = defaultProps;
 
 const mapStateToProps = state => ({
 	value: state.getIn(['order', 'hotel_guest_name']),
+	locale: state.getIn(['roomServiceConfig', 'locale']),
 });
 
 const mapDispatchToProps = dispatch => ({

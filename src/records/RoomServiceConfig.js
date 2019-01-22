@@ -19,6 +19,7 @@ export default class RoomServiceConfig extends Immutable.Record({
 	theme_color: '',
 	currency_code: 'HKD',
 	currency_symbol: '$',
+	currency_decimal_places: 2,
 	type: 'dining',
 	gratuity: Immutable.List(),
 	delivery_time_slot_start: '12:00am',
@@ -54,6 +55,7 @@ export default class RoomServiceConfig extends Immutable.Record({
 			hotel_config_id: parseInt(obj.hotel_config_id, 10),
 			contents: Immutable.fromJS(obj.contents),
 			location_options: locationMap,
+			currency_decimal_places: parseInt(obj.currency_decimal_places, 10),
 			locale: locale || obj.locale,
 		});
 	}

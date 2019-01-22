@@ -73,7 +73,11 @@ class RemovePopup extends React.Component {
 							return (
 								<React.Fragment key={`orderItem-${this.props.item.get('id')}-${i}`}>
 									<AnswerCard
-										price={priceDisplay(this.props.currency_symbol, price)}
+										price={priceDisplay(
+											this.props.currency_symbol,
+											price,
+											this.props.currency_decimal_places,
+										)}
 										description={answerList.toLocaleString(locale)}
 										active={this.state.checked.get(i)}
 									>
@@ -127,6 +131,7 @@ const mapStateToProps = (state, ownProps) => {
 	const id = ownProps.itemId;
 	return {
 		currency_symbol: state.getIn(['roomServiceConfig', 'currency_symbol']),
+		currency_decimal_places: state.getIn(['roomServiceConfig', 'currency_decimal_places']),
 		locale: state.getIn(['roomServiceConfig', 'locale']),
 		item: state.getIn(['roomServiceItems', id], Immutable.Map()),
 		customization: state.getIn(['order', 'shoppingCart', id, 'customization'], Immutable.List()),

@@ -46,8 +46,7 @@ export function putVarsToString(str, vars = {}) {
 	});
 	return result;
 }
-
-const t = (locale, key, vars = {}, overrideKey = '') => {
+export const getTranslation = (locale, key, vars = {}, overrideKey = '') => {
 	let str = key;
 	if (typeof (translation[locale]) !== 'undefined' && typeof (translation[locale][key]) !== 'undefined' && translation[locale][key]) {
 		// eslint-disable-next-line
@@ -65,4 +64,4 @@ const t = (locale, key, vars = {}, overrideKey = '') => {
 	return putVarsToString(str, vars);
 };
 
-export default withLocale(t);
+export default withLocale(getTranslation);

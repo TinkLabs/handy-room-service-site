@@ -80,11 +80,15 @@ class ItemCardContainer extends ValidatorComponent {
 			roomServiceItem,
 			name,
 		} = this.props;
-
+		const errorDiv = (
+			<React.Fragment>
+				{this.getErrorMessage()} ({this.getAvailableDay()} {this.getDeliveryTime()})
+			</React.Fragment>
+		);
 		return (
 			<Element name={name}>
 				<ItemCard
-					error={!this.state.isValid ? `${this.getErrorMessage()} (${this.getAvailableDay()} ${this.getDeliveryTime()})` : null}
+					error={!this.state.isValid ? errorDiv : null}
 					title={title}
 					subtitle={subtitle}
 					price={price}
