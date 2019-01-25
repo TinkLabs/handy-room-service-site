@@ -51,6 +51,7 @@ class ItemCardContainer extends ValidatorComponent {
 	getDeliveryTime() {
 		const { value } = this.props;
 		const locale = this.props.locale.substring(0, 2);
+		if (!value.deliveryTimeSlotStart || !value.deliveryTimeSlotEnd) return '';
 		return `${converthhmmAToLT(value.deliveryTimeSlotStart, locale)} - ${converthhmmAToLT(value.deliveryTimeSlotEnd, locale)}`;
 	}
 	render() {
