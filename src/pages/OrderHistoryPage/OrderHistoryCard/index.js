@@ -88,7 +88,7 @@ const OrderHistoryCard = ({
 const mapStateToProps = state => ({
 	locale: state.getIn(['roomServiceConfig', 'locale']),
 	symbol: state.getIn(['roomServiceConfig', 'currency_symbol']),
-	currency_decimal_placesL: state.getIn(['roomServiceConfig', 'currency_decimal_places']),
+	currency_decimal_places: state.getIn(['roomServiceConfig', 'currency_decimal_places']),
 	serviceChargeText: state.getIn(['roomServiceConfig', 'service_charge_translation']),
 	timezone: state.getIn(['roomServiceConfig', 'timezone']),
 });
