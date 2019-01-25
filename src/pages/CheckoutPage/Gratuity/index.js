@@ -27,15 +27,8 @@ class Gratuity extends ValidatorComponent {
 		this.onComplete = this.onComplete.bind(this);
 		this.onClosePopup = this.onClosePopup.bind(this);
 		this.onOpenPopup = this.onOpenPopup.bind(this);
-	}
-	componentWillMount() {
-		if (!this.props.gratuity_option && this.props.gratuitySelection.size) {
-			this.props.onChangeGratuityOption(this.props.gratuitySelection.get(0));
-		}
-	}
-	componentWillUpdate() {
-		if (!this.props.gratuity_option && this.props.gratuitySelection.size) {
-			this.props.onChangeGratuityOption(this.props.gratuitySelection.get(0));
+		if (!props.gratuity_option && props.gratuitySelection.size) {
+			props.onChangeGratuityOption(props.gratuitySelection.get(0));
 		}
 	}
 	onClosePopup() {
