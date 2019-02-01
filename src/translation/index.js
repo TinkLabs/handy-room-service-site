@@ -1,5 +1,7 @@
 import store from 'store';
 import renderHTML from 'react-render-html';
+import { withLocale } from 'utils/Context/withLocale';
+
 import en_US from './en_US.json';
 import ja_JP from './ja_JP.json';
 import ar from './ar.json';
@@ -44,10 +46,8 @@ export function putVarsToString(str, vars = {}) {
 	});
 	return result;
 }
-export default (key, vars = {}, overrideKey = '') => {
-	const locale = store.getState().getIn(['roomServiceConfig', 'locale']);
+export const getTranslation = (locale, key, vars = {}, overrideKey = '') => {
 	let str = key;
-
 	if (typeof (translation[locale]) !== 'undefined' && typeof (translation[locale][key]) !== 'undefined' && translation[locale][key]) {
 		// eslint-disable-next-line
 		str = translation[locale][key];
@@ -63,3 +63,5 @@ export default (key, vars = {}, overrideKey = '') => {
 	}
 	return putVarsToString(str, vars);
 };
+
+export default withLocale(getTranslation);

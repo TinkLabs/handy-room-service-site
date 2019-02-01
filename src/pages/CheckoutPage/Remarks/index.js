@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { updateSpecialRequests } from 'modules/order';
-import t from 'translation';
+import t, { getTranslation } from 'translation';
 import TextareaAutosize from 'react-textarea-autosize';
 import styles from './style.scss';
 
@@ -38,7 +38,7 @@ class RemarksTab extends React.Component {
 						onChange={this.onChange}
 						onFocus={this.props.onFocus}
 						onBlur={this.props.onBlur}
-						placeholder={t('Allergy or special requests? (Optional)', {}, 'SPECIAL_REQUESTS_PLACEHOLDER')}
+						placeholder={getTranslation(this.props.locale, 'Allergy or special requests? (Optional)', {}, 'SPECIAL_REQUESTS_PLACEHOLDER')}
 					/>
 				</span>
 			</React.Fragment>
@@ -51,6 +51,7 @@ RemarksTab.defaultProps = defaultProps;
 
 const mapStateToProps = state => ({
 	remarks: state.getIn(['order', 'special_requests']),
+	locale: state.getIn(['roomServiceConfig', 'locale']),
 });
 
 const mapDispatchToProps = dispatch => ({

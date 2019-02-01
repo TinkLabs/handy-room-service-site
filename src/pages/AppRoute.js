@@ -10,6 +10,7 @@ import { initRoomServiceConfig } from 'modules/roomServiceConfig';
 import { initRoomServiceCategories } from 'modules/roomServiceCategories';
 import { initRoomServiceItems } from 'modules/roomServiceItems';
 import { ScrollToTopRoute, Loading } from 'components';
+import { LocaleContext } from 'utils/Context/LocaleContext';
 import getConfig from 'getConfig';
 import Homepage from './Homepage';
 import ItemPage from './ItemPage';
@@ -72,63 +73,70 @@ class App extends Component {
 				</div>
 			);
 		}
+		const { locale } = this.props;
 		return (
-			<React.Fragment>
-				<Helmet>
-					<title>{getConfig().title}</title>
-				</Helmet>
-				<Switch>
-					<ScrollToTopRoute
-						exact
-						path="/"
-						component={Homepage}
-					/>
-					<ScrollToTopRoute
-						exact
-						path="/orders"
-						component={OrderHistoryPage}
-					/>
-					<ScrollToTopRoute
-						exact
-						path="/category/:id"
-						component={CategoryPage}
-					/>
-					<ScrollToTopRoute
-						exact
-						path="/item/:id"
-						component={ItemPage}
-					/>
-					<ScrollToTopRoute
-						exact
-						path="/checkout"
-						component={CheckoutPage}
-					/>
-					<ScrollToTopRoute
-						exact
-						path="/confirm"
-						component={OrderConfirmPage}
-					/>
-					<ScrollToTopRoute
-						exact
-						path="/error-outdated"
-						component={ErrorRefreshPage}
-					/>
-					<ScrollToTopRoute
-						exact
-						path="/error"
-						component={ErrorTryAgainPage}
-					/>
-				</Switch>
-			</React.Fragment>
+			<LocaleContext.Provider value={locale}>
+				<React.Fragment>
+					<Helmet>
+						<title>{getConfig().title.props.children(locale)}</title>
+					</Helmet>
+					<Switch>
+						<ScrollToTopRoute
+							exact
+							path="/"
+							component={Homepage}
+						/>
+						<ScrollToTopRoute
+							exact
+							path="/orders"
+							component={OrderHistoryPage}
+						/>
+						<ScrollToTopRoute
+							exact
+							path="/category/:id"
+							component={CategoryPage}
+						/>
+						<ScrollToTopRoute
+							exact
+							path="/item/:id"
+							component={ItemPage}
+						/>
+						<ScrollToTopRoute
+							exact
+							path="/checkout"
+							component={CheckoutPage}
+						/>
+						<ScrollToTopRoute
+							exact
+							path="/confirm"
+							component={OrderConfirmPage}
+						/>
+						<ScrollToTopRoute
+							exact
+							path="/error-outdated"
+							component={ErrorRefreshPage}
+						/>
+						<ScrollToTopRoute
+							exact
+							path="/error"
+							component={ErrorTryAgainPage}
+						/>
+					</Switch>
+				</React.Fragment>
+			</LocaleContext.Provider>
 		);
 	}
 }
 App.propTypes = propTypes;
 App.defaultProps = defaultProps;
 
+const mapStateToProps = state => ({
+	locale: state.getIn(['roomServiceConfig', 'locale']),
+});
+
 const mapDispatchToProps = dispatch => ({
 	initRoomServiceConfig: bindActionCreators(initRoomServiceConfig, dispatch),
 	initRoomServiceCategories: bindActionCreators(initRoomServiceCategories, dispatch),
 	initRoomServiceItems: bindActionCreators(initRoomServiceItems, dispatch),
 });
-export default withRouter(connect(null, mapDispatchToProps)(App));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

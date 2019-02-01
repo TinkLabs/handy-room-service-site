@@ -34,9 +34,13 @@ export function calculateTax(
 		serviceCharge: Math.round((serviceChargeAmount) * 100) / 100,
 	};
 }
-export function roundTo2Decimal(price) {
-	return (Math.round((parseFloat(price)) * 100) / 100);
+export function roundToDecimal(price, decimal_places = 2) {
+	const num = 10 ** decimal_places;
+	if (!num) {
+		return Math.round(parseFloat(price));
+	}
+	return (Math.round((parseFloat(price)) * num) / num);
 }
-export function priceDisplay(currency_symbol = '$', price) {
-	return `${currency_symbol}${roundTo2Decimal(price).toFixed(2)}`;
+export function priceDisplay(currency_symbol = '$', price, decimal_places = 2) {
+	return `${currency_symbol}${roundToDecimal(price, decimal_places).toFixed(decimal_places)}`;
 }

@@ -81,21 +81,23 @@ const Homepage = ({
 				))}
 			</div>
 		</Element>
-		<Button
-			className={styles.callButton}
-			onClick={() => {
-				mixpanel().track('IRD Call Reception Click', {
-					...mixpanelProperties,
-					click_type: 'call-reception',
-					click_action: 'call-reception',
-					click_text: t('Call Reception', {}, 'CALL_TO_ORDER'),
-				});
-				window.open(`tel:${direct_order_number}`);
-			}}
-		>
-			<span className="icon icon-handy-icon-phone" />
-			<span>{t('Call Reception', {}, 'CALL_TO_ORDER')}</span>
-		</Button>
+		{direct_order_number ?
+			<Button
+				className={styles.callButton}
+				onClick={() => {
+					mixpanel().track('IRD Call Reception Click', {
+						...mixpanelProperties,
+						click_type: 'call-reception',
+						click_action: 'call-reception',
+						click_text: t('Call Reception', {}, 'CALL_TO_ORDER'),
+					});
+					window.open(`tel:${direct_order_number}`);
+				}}
+			>
+				<span className="icon icon-handy-icon-phone" />
+				<span>{t('Call Reception', {}, 'CALL_TO_ORDER')}</span>
+			</Button>
+			: null}
 		<CheckoutButton
 			onClickCallback={() => {
 				mixpanel().track('IRD Checkout Click', mixpanelProperties);

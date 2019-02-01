@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { updateDeliveryTime } from 'modules/order';
 import moment from 'moment-timezone';
-import t from 'translation';
+import t, { getTranslation } from 'translation';
 import mixpanel from 'utils/mixpanel';
 import { get24HourFormat } from 'utils/time';
 import 'moment/min/locales.min';
@@ -34,8 +34,8 @@ class DeliveryTimeTab extends ValidatorComponent {
 		moment.tz.setDefault(props.timezone);
 		moment.locale(props.locale.substring(0, 2), {
 			calendar: {
-				nextDay: '['.concat(t('Tomorrow')).concat(',] HH:mm'),
-				sameDay: '['.concat(t('Today')).concat(',] HH:mm'),
+				nextDay: '['.concat(getTranslation(props.locale, 'Tomorrow')).concat(',] HH:mm'),
+				sameDay: '['.concat(getTranslation(props.locale, 'Today')).concat(',] HH:mm'),
 				sameElse: 'MMM DD YYYY, HH:mm',
 			},
 		});
@@ -64,8 +64,6 @@ class DeliveryTimeTab extends ValidatorComponent {
 		this.onChangeDeliveryTime = this.onChangeDeliveryTime.bind(this);
 		this.onClosePopUp = this.onClosePopUp.bind(this);
 		this.onOpenPopUp = this.onOpenPopUp.bind(this);
-	}
-	componentWillMount() {
 		this.initializeDeliveryTime(this.defaultTime.value);
 	}
 	onClosePopUp() {
@@ -103,7 +101,7 @@ class DeliveryTimeTab extends ValidatorComponent {
 		const todayDate = time.date();
 		if (this.startTime.isAfter(this.endTime)) {
 			if (this.startTime.isBefore(time)) {
-				arr.push({ value: ASAP, label: t('ASAP', {}, 'ASAP') });
+				arr.push({ value: ASAP, label: getTranslation(this.props.locale, 'ASAP', {}, 'ASAP') });
 			}
 			while (time.date() === todayDate) {
 				if (time.isSameOrAfter(this.startTime)) {
@@ -116,7 +114,7 @@ class DeliveryTimeTab extends ValidatorComponent {
 			}
 		} else {
 			if (this.startTime.isBefore(time) && time.isSameOrBefore(this.endTime)) {
-				arr.push({ value: ASAP, label: t('ASAP', {}, 'ASAP') });
+				arr.push({ value: ASAP, label: getTranslation(this.props.locale, 'ASAP', {}, 'ASAP') });
 			}
 			while (time.date() === todayDate) {
 				if (this.startTime.isSameOrBefore(time) && time.isSameOrBefore(this.endTime)) {

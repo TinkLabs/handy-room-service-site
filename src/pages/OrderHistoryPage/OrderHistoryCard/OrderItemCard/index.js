@@ -19,6 +19,7 @@ const defaultProps = {
 
 const ItemCard = ({
 	roomServiceOrderItem, locale, item, symbol,
+	currency_decimal_places,
 }) => (
 	<button
 		type="button"
@@ -36,7 +37,7 @@ const ItemCard = ({
 				</div>
 			</div>
 			<span className={styles.price}>
-				{priceDisplay(symbol, roomServiceOrderItem.getTotalPrice())}
+				{priceDisplay(symbol, roomServiceOrderItem.getTotalPrice(), currency_decimal_places)}
 			</span>
 			<p className={styles.subTitle}>{roomServiceOrderItem.toLocaleString(locale)}</p>
 		</div>
@@ -49,6 +50,7 @@ ItemCard.defaultProps = defaultProps;
 const mapStateToProps = (state, ownProps) => ({
 	locale: state.getIn(['roomServiceConfig', 'locale']),
 	symbol: state.getIn(['roomServiceConfig', 'currency_symbol']),
+	currency_decimal_places: state.getIn(['roomServiceConfig', 'currency_decimal_places']),
 	item: state.getIn(['roomServiceItems', ownProps.roomServiceOrderItem.get('item_id')], new RoomServiceItem()),
 });
 

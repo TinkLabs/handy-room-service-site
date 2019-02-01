@@ -35,6 +35,7 @@ const defaultProps = {
 
 const ItemCard = ({
 	error, title, subtitle, price, imageUrl, children, isActive, currency_symbol,
+	currency_decimal_places,
 }) => (
 	<div
 		className={classnames('card', styles.card, { [styles.active]: isActive })}
@@ -53,7 +54,9 @@ const ItemCard = ({
 					</div>
 					: null }
 				{price ?
-					<span className={styles.price}>{priceDisplay(currency_symbol, price)}</span>
+					<span className={styles.price}>
+						{priceDisplay(currency_symbol, price, currency_decimal_places)}
+					</span>
 					: null}
 				{subtitle ? <p>{subtitle}</p> : null}
 				{error ? <span className={styles.error}>{error}</span> : null }
@@ -70,6 +73,7 @@ ItemCard.defaultProps = defaultProps;
 
 const mapStateToProps = state => ({
 	currency_symbol: state.getIn(['roomServiceConfig', 'currency_symbol'], '$'),
+	currency_decimal_places: state.getIn(['roomServiceConfig', 'currency_decimal_places']),
 });
 
 export default withRouter(connect(mapStateToProps, null)(ItemCard));

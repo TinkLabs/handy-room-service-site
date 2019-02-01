@@ -21,6 +21,7 @@ const OrderHistoryCard = ({
 	roomServiceOrder,
 	symbol,
 	timezone,
+	currency_decimal_places,
 }) => {
 	moment.tz.setDefault(timezone);
 	return (
@@ -39,25 +40,33 @@ const OrderHistoryCard = ({
 				{roomServiceOrder.get('gratuity') ?
 					<div className={styles.serviceCharge}>
 						<span className={styles.label}>{t('Gratuity')}</span>
-						<span className={styles.price}>{priceDisplay(symbol, roomServiceOrder.get('gratuity'))}</span>
+						<span className={styles.price}>
+							{priceDisplay(symbol, roomServiceOrder.get('gratuity'), currency_decimal_places)}
+						</span>
 					</div>
 					: null }
 				{roomServiceOrder.get('total_charge') ?
 					<div className={styles.serviceCharge}>
 						<span className={styles.label}>{t('Service Charge', {}, 'SERVICE_CHARGE')}</span>
-						<span className={styles.price}>{priceDisplay(symbol, roomServiceOrder.get('total_charge'))}</span>
+						<span className={styles.price}>
+							{priceDisplay(symbol, roomServiceOrder.get('total_charge'), currency_decimal_places)}
+						</span>
 					</div>
 					: null }
 				{roomServiceOrder.get('tax') ?
 					<div className={styles.serviceCharge}>
 						<span className={styles.label}>{t('Tax', {}, 'TAX_CHARGE')}</span>
-						<span className={styles.price}>{priceDisplay(symbol, roomServiceOrder.get('tax'))}</span>
+						<span className={styles.price}>
+							{priceDisplay(symbol, roomServiceOrder.get('tax'), currency_decimal_places)}
+						</span>
 					</div>
 					: null }
 				<div className={styles.totalCharge}>
 					<span className={styles.label}>{t('Total', {}, 'TOTAL')}</span>
 					<span className={styles.price}>
-						<span className={styles.price}>{priceDisplay(symbol, roomServiceOrder.get('total_price'))}</span>
+						<span className={styles.price}>
+							{priceDisplay(symbol, roomServiceOrder.get('total_price'), currency_decimal_places)}
+						</span>
 					</span>
 				</div>
 				{roomServiceOrder.get('delivery_datetime') ?
@@ -79,6 +88,7 @@ const OrderHistoryCard = ({
 const mapStateToProps = state => ({
 	locale: state.getIn(['roomServiceConfig', 'locale']),
 	symbol: state.getIn(['roomServiceConfig', 'currency_symbol']),
+	currency_decimal_places: state.getIn(['roomServiceConfig', 'currency_decimal_places']),
 	serviceChargeText: state.getIn(['roomServiceConfig', 'service_charge_translation']),
 	timezone: state.getIn(['roomServiceConfig', 'timezone']),
 });

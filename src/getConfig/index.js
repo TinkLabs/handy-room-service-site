@@ -11,7 +11,7 @@ const api = {
 	ldev: 'https://ldev.handy.travel',
 	sandbox: 'https://sandbox.handy.travel',
 };
-const typesCofig = () => ({
+const typesConfig = () => ({
 	dining: {
 		heroImage: diningBg,
 		heroTitle: t('Order and enjoy your favorite food', {}, 'WELCOME_MESSAGE'),
@@ -33,7 +33,6 @@ const typesCofig = () => ({
 });
 const types = ['dining', 'housekeeping', 'shopping'];
 
-
 let targetType = types[0];
 if (window.type && types.indexOf(window.type) > -1) {
 	// eslint-disable-next-line
@@ -44,8 +43,8 @@ console.log('TYPE', targetType);
 export default () => ({
 	env: process.env.ENV,
 	type: targetType,
-	useTestData: false,
+	useTestData: true,
 	host: `${api[process.env.ENV]}/apis/v2/${targetType}`,
-	...typesCofig()[targetType],
+	...typesConfig()[targetType],
 });
 
