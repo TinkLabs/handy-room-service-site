@@ -13,7 +13,6 @@ import mixpanel from 'utils/mixpanel';
 
 import submitOrder from './submit';
 
-import DeliveryTime from './DeliveryTime';
 import DeliveryLocation from './DeliveryLocation';
 import PaymentMethod from './PaymentMethod';
 import Remarks from './Remarks';
@@ -162,13 +161,6 @@ class CheckoutPage extends React.Component {
 				</div>
 				<div className="container">
 					<div className={classnames('card', styles.card)}>
-						<Element name="delivery_time">
-							<DeliveryTime
-								name="delivery_time"
-								validators={['isAfterNow']}
-								errorMessages={[t('* Invalid Time')]}
-							/>
-						</Element>
 						{this.props.isLocationOptionAvailable ?
 							<DeliveryLocation />
 							: null}

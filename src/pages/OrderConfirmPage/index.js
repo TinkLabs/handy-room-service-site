@@ -25,7 +25,6 @@ class OrderConfirmPage extends React.Component {
 			roomNum: props.roomNum,
 			name: props.name,
 			remarks: props.remarks,
-			deliveryTime: props.deliveryTime,
 			deliveryLocation: props.deliveryLocation,
 		};
 		moment.tz.setDefault(props.timezone);
@@ -46,7 +45,6 @@ class OrderConfirmPage extends React.Component {
 			roomNum,
 			name,
 			remarks,
-			deliveryTime,
 			deliveryLocation,
 		} = this.state;
 		const { deliveryLocationOptions, locale, history } = this.props;
@@ -89,10 +87,6 @@ class OrderConfirmPage extends React.Component {
 						<div className={classnames(styles.orderColumn, styles.orderHalfWrapper)}>
 							<p className={styles.orderLabel}>{t('Order Time')}</p>
 							<p className={styles.orderContent}>{moment().format('HH:mm')}</p>
-						</div>
-						<div className={classnames(styles.orderColumn, styles.orderHalfWrapper)}>
-							<p className={styles.orderLabel}>{t('Delivery Time', {}, 'DELIVERY_TIME')}</p>
-							<p className={styles.orderContent}>{deliveryTime ? moment(deliveryTime).calendar() : t('ASAP', {}, 'ASAP')}</p>
 						</div>
 						{deliveryLocation ?
 							<div className={classnames(styles.orderColumn, styles.orderHalfWrapper)}>
@@ -155,7 +149,6 @@ const mapStateToProps = state => ({
 	roomNum: state.getIn(['order', 'hotel_room_number']),
 	name: state.getIn(['order', 'hotel_guest_name']),
 	remarks: state.getIn(['order', 'special_requests']),
-	deliveryTime: state.getIn(['order', 'delivery_time']),
 	deliveryLocation: state.getIn(['order', 'delivery_location']),
 	deliveryLocationOptions: state.getIn(['roomServiceConfig', 'location_options']),
 	locale: state.getIn(['roomServiceConfig', 'locale']),
