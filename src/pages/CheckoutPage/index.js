@@ -135,7 +135,6 @@ class CheckoutPage extends React.Component {
 				</div>
 			);
 		}
-		console.log(this.props.config.type);
 
 		return (
 			<ValidatorForm
