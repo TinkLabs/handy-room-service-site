@@ -13,6 +13,7 @@ import mixpanel from 'utils/mixpanel';
 
 import submitOrder from './submit';
 
+import DeliveryTime from './DeliveryTime';
 import DeliveryLocation from './DeliveryLocation';
 import PaymentMethod from './PaymentMethod';
 import Remarks from './Remarks';
@@ -134,6 +135,7 @@ class CheckoutPage extends React.Component {
 				</div>
 			);
 		}
+		console.log(this.props.config.type);
 
 		return (
 			<ValidatorForm
@@ -161,6 +163,17 @@ class CheckoutPage extends React.Component {
 				</div>
 				<div className="container">
 					<div className={classnames('card', styles.card)}>
+						{
+							this.props.config.type === 'dining' && (
+								<Element name="delivery_time">
+									<DeliveryTime
+										name="delivery_time"
+										validators={['isAfterNow']}
+										errorMessages={[t('* Invalid Time')]}
+									/>
+								</Element>
+							)
+						}
 						{this.props.isLocationOptionAvailable ?
 							<DeliveryLocation />
 							: null}
@@ -246,6 +259,7 @@ const mapStateToProps = state => ({
 		serviceChargePercentage: state.getIn(['roomServiceConfig', 'service_charge_percentage'], 0),
 		taxCharge: state.getIn(['roomServiceConfig', 'tax_charge'], 0),
 		locale: state.getIn(['roomServiceConfig', 'locale'], 0),
+		type: state.getIn(['roomServiceConfig', 'type']),
 		serviceTaxChargeCalculation: state.getIn(['roomServiceConfig', 'service_tax_charge_calculation'], false),
 		minOption: state.getIn(['roomServiceConfig', 'gratuity', 0], 0),
 		currency_decimal_places: state.getIn(['roomServiceConfig', 'currency_decimal_places']),
