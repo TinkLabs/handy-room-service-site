@@ -163,7 +163,7 @@ class CheckoutPage extends React.Component {
 				<div className="container">
 					<div className={classnames('card', styles.card)}>
 						{
-							this.props.config.type === 'dining' && (
+							this.props.config.type === 'dining' ? (
 								<Element name="delivery_time">
 									<DeliveryTime
 										name="delivery_time"
@@ -171,7 +171,7 @@ class CheckoutPage extends React.Component {
 										errorMessages={[t('* Invalid Time')]}
 									/>
 								</Element>
-							)
+							) : null
 						}
 						{this.props.isLocationOptionAvailable ?
 							<DeliveryLocation />

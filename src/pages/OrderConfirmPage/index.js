@@ -96,12 +96,12 @@ class OrderConfirmPage extends React.Component {
 							<p className={styles.orderContent}>{moment().format('HH:mm')}</p>
 						</div>
 						{
-							type === 'dining' && (
+							type === 'dining' ? (
 								<div className={classnames(styles.orderColumn, styles.orderHalfWrapper)}>
 									<p className={styles.orderLabel}>{t('Delivery Time', {}, 'DELIVERY_TIME')}</p>
 									<p className={styles.orderContent}>{deliveryTime ? moment(deliveryTime).calendar() : t('ASAP', {}, 'ASAP')}</p>
 								</div>
-							)
+							) : null
 						}
 						{deliveryLocation ?
 							<div className={classnames(styles.orderColumn, styles.orderHalfWrapper)}>
