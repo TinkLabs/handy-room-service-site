@@ -16,7 +16,7 @@ export default (order, gratuity, tax, serviceCharge, subTotal, locale = 'en_US')
 		tax,
 		sub_total: subTotal,
 		gratuity,
-		total_price: Math.round((subTotal + tax + serviceCharge + gratuity) * 100) / 100,
+		total_price: subTotal + tax + serviceCharge + gratuity,
 	};
 
 	orderReducerImmutable.get('shoppingCart').valueSeq().forEach((cartItem) => {
