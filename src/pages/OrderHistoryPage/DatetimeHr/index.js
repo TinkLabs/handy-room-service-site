@@ -19,7 +19,7 @@ const DatetimeHr = ({
 	moment.tz.setDefault(timezone);
 	return (
 		<div className={styles.datetimehr}>
-			<span>{moment(momentDateTime).calendar()}</span>
+			<span>{moment(momentDateTime.unix()).calendar()}</span>
 		</div>
 	);
 };
