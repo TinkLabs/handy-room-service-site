@@ -28,6 +28,7 @@ export default function submitOrder(orderImmutable, config) {
 		serviceChargePercentage,
 		taxCharge,
 		serviceTaxChargeCalculation,
+		currency_decimal_places,
 	);
 	if (gratuity.size) {
 		if (orderImmutable.get('gratuity_option') === 'custom') {
