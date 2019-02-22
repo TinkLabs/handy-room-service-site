@@ -12,21 +12,19 @@ moment.locale('en', {
 	},
 });
 
-const DatetimeHr = ({
-	momentDateTime,
-	timezone,
-}) => {
-	try {
-		moment.tz.setDefault(timezone);
-	} catch (ex) {
-		console.log(ex);
+class DatetimeHr extends React.Component {
+	constructor(props) {
+		super(props);
+		moment.tz.setDefault(props.timezone);
 	}
-	return (
-		<div className={styles.datetimehr}>
-			<span>{moment.unix(momentDateTime.unix()).calendar()}</span>
-		</div>
-	);
-};
+	render() {
+		return (
+			<div className={styles.datetimehr}>
+				<span>{moment.unix(this.props.momentDateTime.unix()).calendar()}</span>
+			</div>
+		);
+	}
+}
 
 const mapStateToProps = state => ({
 	timezone: state.getIn(['roomServiceConfig', 'timezone']),
