@@ -16,7 +16,11 @@ const DatetimeHr = ({
 	momentDateTime,
 	timezone,
 }) => {
-	moment.tz.setDefault(timezone);
+	try {
+		moment.tz.setDefault(timezone);
+	} catch (ex) {
+		console.log(ex);
+	}
 	return (
 		<div className={styles.datetimehr}>
 			<span>{moment.unix(momentDateTime.unix()).calendar()}</span>
