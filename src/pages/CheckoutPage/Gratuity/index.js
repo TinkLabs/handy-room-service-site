@@ -27,10 +27,8 @@ class Gratuity extends ValidatorComponent {
 		this.onComplete = this.onComplete.bind(this);
 		this.onClosePopup = this.onClosePopup.bind(this);
 		this.onOpenPopup = this.onOpenPopup.bind(this);
-	}
-	componentWillMount() {
-		if (!this.props.gratuity_option && this.props.gratuitySelection.size) {
-			this.props.onChangeGratuityOption(this.props.gratuitySelection.get(0));
+		if (!props.gratuity_option && props.gratuitySelection.size) {
+			props.onChangeGratuityOption(props.gratuitySelection.get(0));
 		}
 	}
 	onClosePopup() {
@@ -69,6 +67,7 @@ class Gratuity extends ValidatorComponent {
 			gratuity,
 			shoppingCart,
 			currency_symbol,
+			currency_decimal_places,
 		} = this.props;
 		const orderArray = shoppingCart.valueSeq().toArray();
 		const subTotal = orderArray.length > 0 ? orderArray
@@ -99,7 +98,7 @@ class Gratuity extends ValidatorComponent {
 						t('<b>%{percentage}%</b> of subtotal', { percentage: gratuity_option, renderHTML: true })
 					}
 					<div className={styles.price}>
-						{priceDisplay(currency_symbol, gratuityPrice)}
+						{priceDisplay(currency_symbol, gratuityPrice, currency_decimal_places)}
 					</div>
 				</button>
 				<hr />
@@ -117,7 +116,7 @@ const mapStateToProps = state => ({
 	gratuitySelection: state.getIn(['roomServiceConfig', 'gratuity'], Immutable.List()),
 	shoppingCart: state.getIn(['order', 'shoppingCart']),
 	currency_symbol: state.getIn(['roomServiceConfig', 'currency_symbol']),
-
+	currency_decimal_places: state.getIn(['roomServiceConfig', 'currency_decimal_places']),
 });
 
 const mapDispatchToProps = dispatch => ({

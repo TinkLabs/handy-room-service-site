@@ -1,9 +1,17 @@
+export function roundToDecimal(price, decimal_places = 2) {
+	const num = 10 ** decimal_places;
+	if (!num) {
+		return Math.round(parseFloat(price));
+	}
+	return (Math.round((parseFloat(price)) * num) / num);
+}
 export function calculateTax(
 	basePrice,
 	serviceChargeFlat,
 	serviceChargePercentage,
 	taxCharge,
 	serviceTaxChargeCalculation,
+	currency_decimal_places,
 ) {
 	const amount = parseFloat(basePrice);
 	let serviceChargeAmount = 0;
@@ -30,13 +38,10 @@ export function calculateTax(
 	}
 
 	return {
-		tax: Math.round((taxChargeAmount) * 100) / 100,
-		serviceCharge: Math.round((serviceChargeAmount) * 100) / 100,
+		tax: roundToDecimal(taxChargeAmount, currency_decimal_places),
+		serviceCharge: roundToDecimal(serviceChargeAmount, currency_decimal_places),
 	};
 }
-export function roundTo2Decimal(price) {
-	return (Math.round((parseFloat(price)) * 100) / 100);
-}
-export function priceDisplay(currency_symbol = '$', price) {
-	return `${currency_symbol}${roundTo2Decimal(price).toFixed(2)}`;
+export function priceDisplay(currency_symbol = '$', price, decimal_places = 2) {
+	return `${currency_symbol}${roundToDecimal(price, decimal_places).toFixed(decimal_places)}`;
 }

@@ -49,7 +49,12 @@ class OrderConfirmPage extends React.Component {
 			deliveryTime,
 			deliveryLocation,
 		} = this.state;
-		const { deliveryLocationOptions, locale, history } = this.props;
+		const {
+			deliveryLocationOptions,
+			locale,
+			history,
+			type,
+		} = this.props;
 		const onBack = () => {
 			mixpanel().track('IRD Order Complete Click', {
 				...mixpanelProperties,
@@ -90,10 +95,14 @@ class OrderConfirmPage extends React.Component {
 							<p className={styles.orderLabel}>{t('Order Time')}</p>
 							<p className={styles.orderContent}>{moment().format('HH:mm')}</p>
 						</div>
-						<div className={classnames(styles.orderColumn, styles.orderHalfWrapper)}>
-							<p className={styles.orderLabel}>{t('Delivery Time', {}, 'DELIVERY_TIME')}</p>
-							<p className={styles.orderContent}>{deliveryTime ? moment(deliveryTime).calendar() : t('ASAP', {}, 'ASAP')}</p>
-						</div>
+						{
+							type === 'dining' ? (
+								<div className={classnames(styles.orderColumn, styles.orderHalfWrapper)}>
+									<p className={styles.orderLabel}>{t('Delivery Time', {}, 'DELIVERY_TIME')}</p>
+									<p className={styles.orderContent}>{deliveryTime ? moment(deliveryTime).calendar() : t('ASAP', {}, 'ASAP')}</p>
+								</div>
+							) : null
+						}
 						{deliveryLocation ?
 							<div className={classnames(styles.orderColumn, styles.orderHalfWrapper)}>
 								<p className={styles.orderLabel}>{t('Delivery Location', {}, 'DELIVERY_LOCATION')}</p>
@@ -159,6 +168,7 @@ const mapStateToProps = state => ({
 	deliveryLocation: state.getIn(['order', 'delivery_location']),
 	deliveryLocationOptions: state.getIn(['roomServiceConfig', 'location_options']),
 	locale: state.getIn(['roomServiceConfig', 'locale']),
+	type: state.getIn(['roomServiceConfig', 'type']),
 	timezone: state.getIn(['roomServiceConfig', 'timezone']),
 });
 

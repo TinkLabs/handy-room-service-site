@@ -94,6 +94,7 @@ const mapStateToProps = state => ({
 	deliveryLocationOptions: state.getIn(['roomServiceConfig', 'location_options']),
 	deliveryLocationFirstOption: state.getIn(['roomServiceConfig', 'location_options'], null)
 		.keys().next().value,
+	locale: state.getIn(['roomServiceConfig', 'locale']),
 	loaded: state.getIn(['roomServiceConfig', 'loaded']),
 });
 

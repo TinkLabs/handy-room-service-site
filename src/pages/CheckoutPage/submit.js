@@ -1,7 +1,7 @@
 import parseRequest from 'utils/parseRequest';
 import postOrder from 'api/postOrder';
 import mixpanel from 'utils/mixpanel';
-import { calculateTax, roundTo2Decimal } from 'utils/price';
+import { calculateTax, roundToDecimal } from 'utils/price';
 
 const mixpanelProperties = {
 	category: 'checkout',
@@ -19,6 +19,7 @@ export default function submitOrder(orderImmutable, config) {
 		serviceTaxChargeCalculation,
 		locale,
 		gratuity,
+		currency_decimal_places,
 	} = config;
 	const subTotal = order.get('shoppingCart').calculatePrice();
 	const { tax, serviceCharge } = calculateTax(
@@ -27,6 +28,7 @@ export default function submitOrder(orderImmutable, config) {
 		serviceChargePercentage,
 		taxCharge,
 		serviceTaxChargeCalculation,
+		currency_decimal_places,
 	);
 	if (gratuity.size) {
 		if (orderImmutable.get('gratuity_option') === 'custom') {
@@ -35,7 +37,7 @@ export default function submitOrder(orderImmutable, config) {
 			gratuity_price = (subTotal * orderImmutable.get('gratuity_option', 0)) / 100;
 		}
 	}
-	gratuity_price = roundTo2Decimal(gratuity_price);
+	gratuity_price = roundToDecimal(gratuity_price, currency_decimal_places);
 	return postOrder(parseRequest(order, gratuity_price, tax, serviceCharge, subTotal, locale))
 		.then(() => {
 			mixpanel().track('IRD Order Confirm Click', {
