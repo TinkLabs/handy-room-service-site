@@ -43,6 +43,7 @@ class FinalPrice extends React.Component {
 			serviceChargePercentage,
 			taxCharge,
 			serviceTaxChargeCalculation,
+			currency_decimal_places,
 		);
 		let gratuityDiv = null;
 		let gratuityPrice = 0;

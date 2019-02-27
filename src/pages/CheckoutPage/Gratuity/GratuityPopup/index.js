@@ -73,7 +73,7 @@ class GratuityPopup extends React.Component {
 			return false;
 		}
 		// eslint-disable-next-line
-		if (parseFloat(this.state.gratuity, 10) < roundToDecimal((this.props.subTotal * this.props.minOption) / 100), this.props.currency_decimal_places) {
+		if (parseFloat(this.state.gratuity, 10) < roundToDecimal((this.props.subTotal * this.props.minOption) / 100, this.props.currency_decimal_places)) {
 			return false;
 		}
 		return true;
