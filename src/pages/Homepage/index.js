@@ -89,7 +89,7 @@ const Homepage = ({
 						...mixpanelProperties,
 						click_type: 'call-reception',
 						click_action: 'call-reception',
-						click_text: t('Call Reception', {}, 'CALL_TO_ORDER'),
+						click_text: 'Call Reception',
 					});
 					window.open(`tel:${direct_order_number}`);
 				}}

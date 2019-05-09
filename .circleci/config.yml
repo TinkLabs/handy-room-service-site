@@ -1,7 +1,7 @@
 defaults: &defaults 
   working_directory: ~/room-service-app
   docker:
-    - image: circleci/node:8.11.2
+    - image: circleci/node:8.15.1
   steps:
     - checkout
     - restore_cache:
@@ -16,12 +16,9 @@ defaults: &defaults
     - run: 
         name: Rebuild node-sass
         command: npm rebuild node-sass
-    - run: 
+    - run:
         name: Install aws command line
-        command: sudo apt-get update && sudo apt-get install -y python-dev python-pip
-    - run: 
-        name: Install aws command line
-        command: sudo pip install awscli
+        command: sudo apt-get update && sudo apt-get install -y awscli
     - run:
         name: Get latest translation
         command: sudo npm install gulp -g && sudo gulp onesky && sudo gulp onesky-post
