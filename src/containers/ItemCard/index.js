@@ -61,7 +61,7 @@ const ItemCardContainer = ({
 		<ItemCard
 			key={`item-${id}`}
 			title={item.getIn(['contents', locale, 'name']) || item.getIn(['contents', 'en_US', 'name'])}
-			subtitle={subtitle || item.getIn(['contents', locale, 'description'])}
+			subtitle={subtitle || item.getIn(['contents', locale, 'description']) || item.getIn(['contents', 'en_US', 'description'])}
 			price={price}
 			isActive={enableActiveHighlight && selectedCount > 0}
 			imageUrl={item.get('image')}
