@@ -76,8 +76,8 @@ class CategoryPage extends React.Component {
 				<Header hasBackButton />
 				{itemIds.size ?
 					<TitleSection
-						title={category.getIn(['contents', locale, 'name'])}
-						details={category.getIn(['contents', locale, 'detail'])}
+						title={category.getIn(['contents', locale, 'name']) || category.getIn(['contents', 'en_US', 'name'])}
+						details={category.getIn(['contents', locale, 'detail']) || category.getIn(['contents', 'en_US', 'detail'])}
 						hintText={t('Please select items')}
 						deliveryTimeSlotStart={category.get('parent_id') ? null : category.get('delivery_time_slot_start')}
 						deliveryTimeSlotEnd={category.get('parent_id') ? null : category.get('delivery_time_slot_end')}
@@ -86,8 +86,8 @@ class CategoryPage extends React.Component {
 					/>
 					:
 					<TitleSection
-						title={category.getIn(['contents', locale, 'name'])}
-						details={category.getIn(['contents', locale, 'detail'])}
+						title={category.getIn(['contents', locale, 'name']) || category.getIn(['contents', 'en_US', 'name'])}
+						details={category.getIn(['contents', locale, 'detail']) || category.getIn(['contents', 'en_US', 'detail'])}
 						locale={locale}
 						hintText={t('Please select a sub-category')}
 						deliveryTimeSlotStart={category.get('delivery_time_slot_start')}

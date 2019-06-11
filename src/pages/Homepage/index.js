@@ -66,7 +66,7 @@ const Homepage = ({
 						onClick={(e, category) => {
 							mixpanel().track('IRD Category Click', {
 								...mixpanelProperties,
-								item: category.get('name'),
+								item: category.getIn(['contents', locale, 'name']) || category.getIn(['contents', 'en_US', 'name']),
 								item_id: id,
 								item_type: 'room_service_categories',
 								item_position: pos + 1,
