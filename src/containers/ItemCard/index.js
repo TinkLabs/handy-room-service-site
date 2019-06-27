@@ -54,6 +54,7 @@ const ItemCardContainer = ({
 	selectedCount,
 	enableActiveHighlight,
 	subtitle,
+	type,
 }) => {
 	if (!id) return null;
 	const price = item.get('price') ? item.get('price') + additionalPrice : 0;
@@ -76,31 +77,35 @@ const ItemCardContainer = ({
 							</React.Fragment>
 							: null}
 					</div>
-					<div className="right" key="rightDiv">
-						<Incrementer
-							count={selectedCount}
-							onAdd={() => {
-								if (item.get('item_customization_enabled', false)) {
-									onAddCustomize(id);
-									onClickCallback('add', item);
-								} else {
-									onAdd({
-										roomServiceItem: item,
-									});
-									onClickCallback('add', item);
-								}
-							}}
-							onRemove={() => {
-								if (item.get('item_customization_enabled', false)) {
-									onRemoveCustomize(id);
-									onClickCallback('remove', item);
-								} else {
-									onRemove(id);
-									onClickCallback('remove', item);
-								}
-							}}
-						/>
-					</div>
+					{
+						type === 'dining' || type === 'housekeeping' ? (
+							<div className="right" key="rightDiv">
+								<Incrementer
+									count={selectedCount}
+									onAdd={() => {
+										if (item.get('item_customization_enabled', false)) {
+											onAddCustomize(id);
+											onClickCallback('add', item);
+										} else {
+											onAdd({
+												roomServiceItem: item,
+											});
+											onClickCallback('add', item);
+										}
+									}}
+									onRemove={() => {
+										if (item.get('item_customization_enabled', false)) {
+											onRemoveCustomize(id);
+											onClickCallback('remove', item);
+										} else {
+											onRemove(id);
+											onClickCallback('remove', item);
+										}
+									}}
+								/>
+							</div>
+						) : null
+					}
 				</React.Fragment>
 				: children}
 		</ItemCard>
@@ -113,6 +118,7 @@ ItemCardContainer.defaultProps = defaultProps;
 const mapStateToProps = (state, ownProps) => {
 	const locale = state.getIn(['roomServiceConfig', 'locale']);
 	return {
+		type: state.getIn(['roomServiceConfig', 'type']),
 		locale,
 		selectedCount: state.getIn(['order', 'shoppingCart', ownProps.id, 'count'], 0),
 		item: state.getIn(['roomServiceItems', ownProps.id], new RoomServiceItem()),

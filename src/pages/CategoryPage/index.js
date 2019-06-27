@@ -63,6 +63,7 @@ class CategoryPage extends React.Component {
 			subcategoryIds,
 			itemIds,
 			locale,
+			service_type,
 		} = this.props;
 		return (
 			<div className={styles.itemPage}>
@@ -144,11 +145,15 @@ class CategoryPage extends React.Component {
 							enableActiveHighlight
 						/>
 					))}
-					<CheckoutButton
-						onClickCallback={() => {
-							mixpanel().track('IRD Checkout Click', mixpanelProperties);
-						}}
-					/>
+					{
+						service_type === 'dining' || service_type === 'housekeeping' ? (
+							<CheckoutButton
+								onClickCallback={() => {
+									mixpanel().track('IRD Checkout Click', mixpanelProperties);
+								}}
+							/>
+						) : null
+					}
 				</div>
 			</div>
 		);
@@ -164,6 +169,7 @@ const mapStateToProps = (state, ownProps) => {
 	const subcategoryIds = category.get('room_service_categories', Immutable.List());
 	const itemIds = category.get('room_service_items', Immutable.List());
 	return {
+		service_type: state.getIn(['roomServiceConfig', 'type']),
 		locale: state.getIn(['roomServiceConfig', 'locale']),
 		category,
 		subcategoryIds,
