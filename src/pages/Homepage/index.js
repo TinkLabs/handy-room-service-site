@@ -23,24 +23,29 @@ const Homepage = ({
 	backgroundUrl,
 	direct_order_number,
 	locale,
+	service_type,
 }) => (
 	<div className={styles.page} id="page">
 		<header className={styles.header}>
 			<span className={classnames('icon', getConfig().icon)} />
 			<span>{getConfig().title}</span>
-			<button
-				type="button"
-				onClick={() => {
-					mixpanel().track('IRD My Orders Click', {
-						...mixpanelProperties,
-						click_type: 'my-orders',
-					});
-					history.push('/orders');
-				}}
-				className={classnames('btn small blue', styles.smallBtn)}
-			>
-				{t('My Orders', {}, 'MY_ORDERS')}
-			</button>
+			{
+				service_type === 'dining' || service_type === 'housekeeping' ? (
+					<button
+						type="button"
+						onClick={() => {
+							mixpanel().track('IRD My Orders Click', {
+								...mixpanelProperties,
+								click_type: 'my-orders',
+							});
+							history.push('/orders');
+						}}
+						className={classnames('btn small blue', styles.smallBtn)}
+					>
+						{t('My Orders', {}, 'MY_ORDERS')}
+					</button>
+				) : null
+			}
 		</header>
 		<HeroSection
 			title=""
@@ -110,6 +115,7 @@ const mapStateToProps = (state) => {
 	const locale = state.getIn(['roomServiceConfig', 'locale']);
 
 	return {
+		service_type: state.getIn(['roomServiceConfig', 'type']),
 		subtitle: state.getIn(['roomServiceConfig', 'contents', locale, 'remarks']),
 		backgroundUrl: state.getIn(['roomServiceConfig', 'banner_image_url']),
 		categoryIds: state.get('homepageCategories'),
