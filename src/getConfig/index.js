@@ -26,9 +26,11 @@ const typesConfig = () => ({
 	},
 	shopping: {
 		heroImage: shoppingBg,
-		heroTitle: t('Enjoy shopping in your hotel room', {}, 'WELCOME_MESSAGE'),
+		// heroTitle: t('Enjoy shopping in your hotel room', {}, 'WELCOME_MESSAGE'),
+		heroTitle: t('Please place orders with the front desk or hotel staff', {}, 'WELCOME_MESSAGE'),
 		icon: 'icon-handy-icon-portal-shopping',
-		title: t('In-room Shopping', {}, 'IN_ROOM_DINING'),
+		// title: t('In-room Shopping', {}, 'IN_ROOM_DINING'),
+		title: t('Shopping Catalog', {}, 'IN_ROOM_DINING'),
 	},
 });
 const types = ['dining', 'housekeeping', 'shopping'];
